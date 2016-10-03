@@ -1,0 +1,323 @@
+# Copyright (C) 2016  Sergey Slipchenko
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%YAML 1.2
+---
+file_extensions:
+  - js
+  - js.flow
+
+first_line_match: ^#!\s*/.*\b(node|js)$\n?
+scope: source.js
+
+variables:
+  hexDigit: '[\da-fA-F]'
+  identifier: '[_$A-Za-z][_$\w\d]*'
+
+contexts:
+  main:
+    - include: core
+
+  prototype:
+    - include: comments
+
+  comments:
+    - match: /\*
+      scope: punctuation.definition.comment.js
+      push:
+        - meta_scope: comment.block.js
+        - match: \*/
+          scope: punctuation.definition.comment.js
+          pop: true
+
+    - match: //
+      scope: punctuation.definition.comment.js
+      push:
+        - meta_scope: comment.line.js
+        - match: $
+          pop: true
+
+  core:
+    - include: ignore-long-lines
+    - include: statement
+
+  ignore-long-lines:
+    - match: "^.{999,}"
+
+  expression:
+    - include: operator
+    - include: literal
+    - include: builtin
+    - include: function-call
+    - match: '{{identifier}}'
+      scope: variable.readwrite.js
+
+  statement:
+    - include: block-statement
+    - include: variable-declaration
+    - include: async-function-declaration
+    - include: function-declaration
+    - include: return-statement
+    - include: if-statement
+    - include: expression
+    - include: semicolon
+
+  semicolon:
+    - match: ;
+      scope: punctuation.terminator.js
+
+  operator:
+    - match: \(
+      scope: punctuation.section.parens.begin.js
+      push:
+        - meta_content_scope: meta.parens.js
+        - include: expression
+
+        - match: \)
+          scope: punctuation.section.parens.end.js
+          pop: true
+
+    - match: '&&|\|\||((<|>)=?)|((=|!)==?)|!'
+      scope: keyword.operator.logical.js
+
+    - match: (\+|-|\*|\/|%|&|\|)=
+      scope: keyword.operator.assignment.js
+
+    - match: =
+      scope: keyword.operator.assignment.js
+
+    - match: \b(delete|void|typeof)\b
+      scope: keyword.operator.word.js
+
+    - match: \+|-|\*|/|%
+      scope: keyword.operator.arithmetic.js
+
+    - match: '&|\||~'
+      scope: keyword.operator.bitwise.js
+
+  literal:
+    - include: string-literal-single
+    - include: string-literal-double
+    - include: template-literal
+    - include: numeric-literal
+    - include: language-literal
+
+  string-literal:
+    - match: \\(r|n|t|u{{hexDigit}}{4})
+      scope: constant.character.escape.js
+
+    - match: \1
+      scope: punctuation.definition.string.js
+      pop: true
+
+  string-literal-no-newline:
+    - match: '[^\\](\n)'
+      captures:
+        1: invalid.illegal.js
+
+  string-literal-single:
+    - match: (') # see string-literal for reasons for capturing
+      scope: punctuation.definition.string.js
+      push:
+        - meta_include_prototype: false
+        - meta_content_scope: string.quoted.single.js
+        - include: string-literal
+        - include: string-literal-no-newline
+
+  string-literal-double:
+    - match: (") # see string-literal for reasons for capturing
+      scope: punctuation.definition.string.js
+      push:
+        - meta_include_prototype: false
+        - meta_content_scope: string.quoted.double.js
+        - include: string-literal
+        - include: string-literal-no-newline
+
+  template-literal:
+    - match: (`) # see string-literal for reasons for capturing
+      scope: punctuation.definition.string.js
+      push:
+        - meta_content_scope: string.interpolated.js
+        - include: string-literal
+
+        - match: \$\{
+          scope: punctuation.section.embedded.js
+          push:
+            - include: expression
+            - match: \}
+              scope: punctuation.section.embedded.js
+              pop: true
+
+  numeric-literal:
+    - match: '0x{{hexDigit}}+'
+      scope: constant.numeric.hex.js
+
+    - match: '0\d+'
+      scope: constant.numeric.octal.js
+
+    - match: '-?(\d+\.?\d*|\d*\.?\d+)(e[-+](\d+))?'
+      scope: constant.numeric.js
+
+  language-literal:
+    - match: \b(true|false)\b
+      scope: constant.language.js
+
+  builtin:
+    - match: \b(Infinity|NaN)\b
+      scope: support.constant.js
+
+    - match: \b(this|super)\b
+      scope: variable.language.js
+
+    - match: \b(Array|Math|Object|Buffer)\b
+      scope: support.class.js
+
+  block-statement:
+    - match: \{
+      scope: punctuation.section.block.begin.js
+      push:
+        - meta_content_scope: meta.block.js
+        - include: statement
+
+        - match: \}
+          scope: punctuation.section.block.end.js
+          pop: true
+
+  variable-declaration-stop:
+    - match: (;)|(?=\b(if|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield))\b
+      captures:
+        1: punctuation.terminator.js
+      pop: true
+
+  variable-declaration-recursive-readwrite:
+    - match: '{{identifier}}'
+      scope: variable.other.readwrite.js
+      set:
+        - include: variable-declaration-stop
+        - include: expression
+
+        - match: ','
+          scope: punctuation.separator.js
+          set: variable-declaration-recursive-readwrite
+
+  variable-declaration-recursive-constant:
+    - match: '{{identifier}}'
+      scope: variable.other.constant.js
+      set:
+        - include: variable-declaration-stop
+        - include: expression
+
+        - match: ','
+          scope: punctuation.separator.js
+          set: variable-declaration-recursive-constant
+
+  variable-declaration:
+    - match: \b(var|let|const)\s+({{identifier}})\s*=\s*(\()?(.*?)(\))?\s*(=>)
+      captures:
+        1: storage.type.js
+        2: entity.name.function.js
+        3: punctuation.section.parens.begin.js
+        4: meta.function.parameters.js meta.parens.js
+        5: punctuation.section.parens.end.js
+
+    - match: \b(var|let)\b
+      scope: storage.type.js
+      push: variable-declaration-recursive-readwrite
+
+    - match: \bconst\b
+      scope: storage.type.js
+      push: variable-declaration-recursive-constant
+
+  async-function-declaration:
+    - match: \basync\b
+      scope: storage.modifier.js
+    - include: function-declaration
+
+  function-parameter:
+    - match: '{{identifier}}'
+      scope: variable.parameter.js
+
+    - match: ','
+      scope: punctuation.separator.js
+
+  function-declaration:
+    - match: \bfunction\b
+      scope: storage.type.js
+
+      push:
+        - meta_scope: meta.function.js
+
+        - match: \*
+          scope: storage.modifier.js
+
+        - match: '{{identifier}}'
+          scope: entity.name.function.js
+
+        - match: \(
+          scope: meta.function.js punctuation.section.parens.begin.js
+          push:
+            - meta_content_scope: meta.function.parameters.js meta.parens.js
+            - clear_scopes: 1
+            - include: function-parameter
+
+            - match: \)
+              scope: meta.function.js punctuation.section.parens.end.js
+              pop: true
+
+        - match: \{
+          scope: punctuation.section.block.begin.js
+          set:
+            - meta_content_scope: meta.function.js meta.block.js
+            - include: statement
+
+            - match: \}
+              scope: punctuation.section.block.end.js
+              pop: true
+
+  return-statement:
+    - match: \breturn\b
+      scope: keyword.control.js
+
+  if-statement:
+    - match: \bif\b
+      scope: keyword.control.conditional.js
+      push:
+        - match: \(
+          scope: punctuation.section.parens.begin.js
+          set:
+            - meta_content_scope: meta.parens.js
+            - include: expression
+
+            - match: \)
+              scope: punctuation.section.parens.end.js
+              pop: true
+
+    - match: \belse\b
+      scope: keyword.control.conditional.js
+
+  function-call:
+    - match: ((isFinite|isNaN)|({{identifier}}))\s*(\()
+      captures:
+        2: support.function.js
+        3: variable.function.js
+        4: punctuation.section.parens.begin.js
+      push:
+        - meta_scope: meta.function-call.js
+        - meta_content_scope: meta.parens.js
+        - include: expression
+
+        - match: \)
+          scope: punctuation.section.parens.end.js
+          pop: true
