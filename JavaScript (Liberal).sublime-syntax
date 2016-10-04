@@ -25,6 +25,7 @@ scope: source.js
 variables:
   hexDigit: '[\da-fA-F]'
   identifier: '[_$A-Za-z][_$\w\d]*'
+  builtinFunctions: 'isFinite|isNaN'
 
 contexts:
   main:
@@ -59,8 +60,10 @@ contexts:
   expression:
     - include: operator
     - include: literal
-    - include: builtin
     - include: function-call
+    - include: builtin
+    - match: \.
+      scope: punctuation.accessor.js
     - match: '{{identifier}}'
       scope: variable.readwrite.js
 
@@ -180,8 +183,14 @@ contexts:
     - match: \b(this|super)\b
       scope: variable.language.js
 
-    - match: \b(Array|Math|Object|Buffer)\b
+    - match: \b(Array|Object|Buffer)\b
       scope: support.class.js
+
+    - match: '{{builtinFunctions}}'
+      scope: support.function.js
+
+    - match: \b(Math|console)\b
+      scope: support.type.js
 
   block-statement:
     - match: \{
@@ -337,7 +346,7 @@ contexts:
       scope: keyword.control.conditional.js
 
   function-call:
-    - match: ((isFinite|isNaN)|({{identifier}}))\s*(\()
+    - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
         2: support.function.js
         3: variable.function.js

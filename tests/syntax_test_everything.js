@@ -528,6 +528,10 @@ callSome(Infinity) === true
 //                 ^^^ keyword.operator.logical.js
 //                     ^^^^ constant.language.js
 
+isFinite
+// <- support.function.js
+//^^^^^^ support.function.js
+
 if (isFinite(NaN)) console.log('something')
 // <- keyword.control.conditional.js
 //  ^^^^^^^^^^^^^  meta.function-call.js
@@ -536,6 +540,9 @@ if (isFinite(NaN)) console.log('something')
 //          ^ meta.parens.js meta.function-call.js punctuation.section.parens.begin.js
 //           ^^^ meta.parens.js meta.parens.js
 //              ^ meta.parens.js meta.function-call.js punctuation.section.parens.end.js
+//                 ^^^^^^^ support.type.js
+//                        ^ punctuation.accessor.js
+//                         ^^^^^^^^^^^^^^^^ meta.function-call.js
 
 if (false || true || 5 > 10) {
 // <- keyword.control.conditional.js
