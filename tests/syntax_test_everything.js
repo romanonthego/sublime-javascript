@@ -446,10 +446,26 @@ async function asyncFun(value) {
 //       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
 
+const simpleFn = x => x * 2
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ variable.parameter.js
+//               ^ meta.function.parameters.js
+//                 ^^ storage.type.js
+//                    ^ variable.readwrite.js
+//                      ^ keyword.operator.arithmetic.js
+//                        ^ constant.numeric.js
+//                 ^^^^^^^^ meta.function.js
+
 const arrowFun = (value1, value2) => {
 // <- storage.type.js
 //^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
 //    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
 //               ^ punctuation.section.parens.begin.js
 //                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
 //                ^^^^^^ variable.parameter.js
@@ -480,7 +496,8 @@ const arrowFun = value => {
 }
 
 async const arrowFun = value => {
-// <- storage.type.js
+// <- storage.modifier.js
+//^^^ storage.modifier.js
 //    ^^^^^ storage.type.js
 //          ^^^^^^^^ entity.name.function.js
 //    ^^^^^^^^^^^^^^^ meta.function.js

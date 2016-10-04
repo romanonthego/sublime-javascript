@@ -224,13 +224,45 @@ contexts:
           set: variable-declaration-recursive-constant
 
   variable-declaration:
-    - match: \b(var|let|const)\s+({{identifier}})\s*=\s*(\()?(.*?)(\))?\s*(=>)
+    - match: \b(var|let|const)\s+({{identifier}})\s*(=)(?=(.*)(=>))
       captures:
         1: storage.type.js
         2: entity.name.function.js
-        3: punctuation.section.parens.begin.js
-        4: meta.function.parameters.js meta.parens.js
-        5: punctuation.section.parens.end.js
+        3: keyword.operator.assignment.js
+      push:
+        - meta_scope: meta.function.js
+
+        - match: \(
+          scope: meta.function.js punctuation.section.parens.begin.js
+          push:
+            - meta_content_scope: meta.function.parameters.js meta.parens.js
+            - clear_scopes: 1
+            - include: function-parameter
+
+            - match: \)
+              scope: meta.function.js punctuation.section.parens.end.js
+              pop: true
+
+        - match: '{{identifier}}'
+          scope: meta.function.parameters.js variable.parameter.js
+
+        - match: =>
+          scope: storage.type.js
+
+          set:
+            - meta_content_scope: meta.function.js
+            - include: variable-declaration-stop
+            - include: expression
+
+            - match: \{
+              scope: punctuation.section.block.begin.js
+              set:
+                - meta_content_scope: meta.block.js meta.function.js
+                - include: statement
+
+                - match: \}
+                  scope: punctuation.section.block.end.js
+                  pop: true
 
     - match: \b(var|let)\b
       scope: storage.type.js
