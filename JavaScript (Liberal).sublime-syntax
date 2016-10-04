@@ -67,7 +67,6 @@ contexts:
   statement:
     - include: block-statement
     - include: variable-declaration
-    - include: async-function-declaration
     - include: function-declaration
     - include: return-statement
     - include: if-statement
@@ -224,11 +223,12 @@ contexts:
           set: variable-declaration-recursive-constant
 
   variable-declaration:
-    - match: \b(var|let|const)\s+({{identifier}})\s*(=)(?=(.*)(=>))
+    - match: \b(var|let|const)\s+({{identifier}})\s*(=)\s*(async\s)?\s*(?=(.*)(=>))
       captures:
         1: storage.type.js
         2: entity.name.function.js
         3: keyword.operator.assignment.js
+        4: storage.modifier.js
       push:
         - meta_scope: meta.function.js
 
@@ -272,11 +272,6 @@ contexts:
       scope: storage.type.js
       push: variable-declaration-recursive-constant
 
-  async-function-declaration:
-    - match: \basync\b
-      scope: storage.modifier.js
-    - include: function-declaration
-
   function-parameter:
     - match: '{{identifier}}'
       scope: variable.parameter.js
@@ -285,8 +280,10 @@ contexts:
       scope: punctuation.separator.js
 
   function-declaration:
-    - match: \bfunction\b
-      scope: storage.type.js
+    - match: \b(async\s+)?(function)\b
+      captures:
+        1: storage.modifier.js
+        2: storage.type.js
 
       push:
         - meta_scope: meta.function.js

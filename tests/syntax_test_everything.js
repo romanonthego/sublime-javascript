@@ -495,12 +495,12 @@ const arrowFun = value => {
 //       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
 
-async const arrowFun = value => {
-// <- storage.modifier.js
-//^^^ storage.modifier.js
-//    ^^^^^ storage.type.js
-//          ^^^^^^^^ entity.name.function.js
-//    ^^^^^^^^^^^^^^^ meta.function.js
+const arrowFun = async value => {
+// <- storage.type.js
+//^^^ storage.type.js
+//               ^^^^^ storage.modifier.js
+//    ^^^^^^^^ entity.name.function.js
+//    ^^^^^^^^^^^^^^^^^ meta.function.js
 //                     ^^^^^ meta.function.parameters.js
 //                     ^^^^^ variable.parameter.js
 //                          ^^^^^ meta.function.js
