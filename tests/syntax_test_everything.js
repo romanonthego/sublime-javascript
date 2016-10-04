@@ -574,3 +574,67 @@ if (false || true || 5 > 10) {
 //     ^ punctuation.section.block.begin.js
 }
 // <- punctuation.section.block.end.js
+
+switch (someVar + 5) {
+// <- keyword.control.conditional.js
+//^^^^ keyword.control.conditional.js
+//     ^ punctuation.section.parens.begin.js
+//      ^^^^^^^^^^^ meta.parens.js
+//      ^^^^^^^ variable.readwrite.js
+//              ^ keyword.operator.arithmetic.js
+//                ^ constant.numeric.js
+//                 ^ punctuation.section.parens.end.js
+//                   ^ punctuation.section.block.begin.js
+  case 5 +5:
+//^^^^ keyword.control.conditional.js
+//     ^ constant.numeric.js
+//       ^ keyword.operator.arithmetic.js
+//        ^ constant.numeric.js
+//         ^ punctuation.terminator.js
+    console.log('someVar equals', 5 +5)
+//  ^^^^^^^ support.type.js
+//         ^ punctuation.accessor.js
+//          ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+//             ^ punctuation.section.parens.begin.js
+//              ^ punctuation.definition.string.js
+//               ^^^^^^^^^^^^^^ string.quoted.single.js
+//                             ^ punctuation.definition.string.js
+//                              ^ punctuation.separator.js
+//                                ^ constant.numeric.js
+//                                  ^ keyword.operator.arithmetic.js
+//                                   ^ constant.numeric.js
+//                                    ^ punctuation.section.parens.end.js
+    break
+//  ^^^^^ keyword.control.js
+  case 4 * 2:
+//^^^^ keyword.control.conditional.js
+//     ^ constant.numeric.js
+//       ^ keyword.operator.arithmetic.js
+//         ^ constant.numeric.js
+//          ^ punctuation.terminator.js
+  case 5 - 3:
+//^^^^ keyword.control.conditional.js
+//     ^ constant.numeric.js
+//       ^ keyword.operator.arithmetic.js
+//         ^ constant.numeric.js
+//          ^ punctuation.terminator.js
+    break
+// <- meta.block.js
+  case 5..toString():
+//^^^^ keyword.control.conditional.js
+//     ^^ constant.numeric.js
+//       ^ punctuation.accessor.js
+//        ^^^^^^^^^^ meta.function-call.js
+//                ^ punctuation.section.parens.begin.js
+//                 ^ punctuation.section.parens.end.js
+//                  ^ punctuation.terminator.js
+    console.log('someVar equals', 5..toString())
+    break
+//  ^^^^^ keyword.control.js
+// <- meta.block.js
+  default:
+//^^^^^^^ keyword.control.conditional.js
+//       ^ punctuation.terminator.js
+// <- meta.block.js
+}
+// <- punctuation.section.block.end.js

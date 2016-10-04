@@ -73,6 +73,7 @@ contexts:
     - include: function-declaration
     - include: return-statement
     - include: if-statement
+    - include: switch-statement
     - include: expression
     - include: semicolon
 
@@ -345,6 +346,45 @@ contexts:
     - match: \belse\b
       scope: keyword.control.conditional.js
 
+  switch-statement:
+    - match: \bswitch\b
+      scope: keyword.control.conditional.js
+      push:
+        - match: \(
+          scope: punctuation.section.parens.begin.js
+          push:
+            - meta_content_scope: meta.parens.js
+            - include: expression
+            - match: \)
+              scope: punctuation.section.parens.end.js
+              pop: true
+
+        - match: \{
+          scope: punctuation.section.block.begin.js
+          push:
+            - meta_content_scope: meta.block.js
+
+            - match: \b(case|default)\b
+              scope: keyword.control.conditional.js
+              push:
+                - include: expression
+
+                - match: ':'
+                  scope: punctuation.terminator.js
+                  set:
+                    - match: \bbreak\b
+                      scope: keyword.control.js
+                      pop: true
+
+                    - match: (?=\}|\b(case|default)\b)
+                      pop: true
+
+                    - include: statement
+
+            - match: \}
+              scope: punctuation.section.block.end.js
+              pop: true
+
   function-call:
     - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
@@ -355,6 +395,9 @@ contexts:
         - meta_scope: meta.function-call.js
         - meta_content_scope: meta.parens.js
         - include: expression
+
+        - match: ','
+          scope: punctuation.separator.js
 
         - match: \)
           scope: punctuation.section.parens.end.js
