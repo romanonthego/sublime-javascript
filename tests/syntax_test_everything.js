@@ -1,4 +1,4 @@
-// SYNTAX TEST "Packages/js-modern/JavaScript (Modern).sublime-syntax"
+// SYNTAX TEST "Packages/sublime-javascript/JavaScript (Liberal).sublime-syntax"
 
 /* single-line block comment */
 // <- comment.block.js punctuation.definition.comment.js
