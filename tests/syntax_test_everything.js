@@ -452,8 +452,9 @@ const arrowFun = (value1, value2) => {
 //    ^^^^^^^^ entity.name.function.js
 //               ^ punctuation.section.parens.begin.js
 //                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^ variable.parameter.js
-//                     ^ punctuation.separator.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
 //                              ^^^^^^ meta.function.js
 //                              ^ punctuation.section.parens.end.js
 //                                ^^ storage.type.js
