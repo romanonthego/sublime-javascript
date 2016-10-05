@@ -455,7 +455,7 @@ const simpleFn = x => x * 2
 //               ^ variable.parameter.js
 //               ^ meta.function.parameters.js
 //                 ^^ storage.type.js
-//                    ^ variable.readwrite.js
+//                    ^ variable.other.readwrite.js
 //                      ^ keyword.operator.arithmetic.js
 //                        ^ constant.numeric.js
 //                 ^^^^^^^^ meta.function.js
@@ -580,7 +580,7 @@ switch (someVar + 5) {
 //^^^^ keyword.control.conditional.js
 //     ^ punctuation.section.parens.begin.js
 //      ^^^^^^^^^^^ meta.parens.js
-//      ^^^^^^^ variable.readwrite.js
+//      ^^^^^^^ variable.other.readwrite.js
 //              ^ keyword.operator.arithmetic.js
 //                ^ constant.numeric.js
 //                 ^ punctuation.section.parens.end.js
@@ -636,5 +636,64 @@ switch (someVar + 5) {
 //^^^^^^^ keyword.control.conditional.js
 //       ^ punctuation.terminator.js
 // <- meta.block.js
+}
+// <- punctuation.section.block.end.js
+
+const f = (5 + 8, 10)
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^ punctuation.section.parens.begin.js
+//         ^ constant.numeric.js
+//           ^ keyword.operator.arithmetic.js
+//             ^ constant.numeric.js
+//              ^ keyword.operator.js
+//                ^^ constant.numeric.js
+//         ^^^^^^^^^ meta.parens.js
+//                  ^ punctuation.section.parens.end.js
+
+for (let i = 0, j = 0; i < 10, j < 10; i++, j++) {
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.parens.begin.js
+//   ^^^ storage.type.js
+//       ^ variable.other.readwrite.js
+//         ^ keyword.operator.assignment.js
+//           ^ constant.numeric.js
+//            ^ punctuation.separator.js
+//              ^ variable.other.readwrite.js
+//                ^ keyword.operator.assignment.js
+//                  ^ constant.numeric.js
+//                   ^ punctuation.terminator.js
+//                     ^ variable.other.readwrite.js
+//                       ^ keyword.operator.logical.js
+//                         ^^ constant.numeric.js
+//                           ^ keyword.operator.js
+//                             ^ variable.other.readwrite.js
+//                               ^ keyword.operator.logical.js
+//                                 ^^ constant.numeric.js
+//                                   ^ punctuation.terminator.js
+//                                     ^ variable.other.readwrite.js
+//                                      ^^ keyword.operator.arithmetic.js
+//                                        ^ keyword.operator.js
+//                                          ^ variable.other.readwrite.js
+//                                           ^^ keyword.operator.arithmetic.js
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.parens.js
+//                                             ^ punctuation.section.parens.end.js
+//                                               ^ punctuation.section.block.begin.js
+  console.log('iteration:', i)
+// <- meta.block.js
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
 // <- punctuation.section.block.end.js

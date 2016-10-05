@@ -65,7 +65,7 @@ contexts:
     - match: \.
       scope: punctuation.accessor.js
     - match: '{{identifier}}'
-      scope: variable.readwrite.js
+      scope: variable.other.readwrite.js
 
   statement:
     - include: block-statement
@@ -74,6 +74,7 @@ contexts:
     - include: return-statement
     - include: if-statement
     - include: switch-statement
+    - include: for-statement
     - include: expression
     - include: semicolon
 
@@ -109,6 +110,9 @@ contexts:
 
     - match: '&|\||~'
       scope: keyword.operator.bitwise.js
+
+    - match: ','
+      scope: keyword.operator.js
 
   literal:
     - include: string-literal-single
@@ -205,17 +209,26 @@ contexts:
           pop: true
 
   variable-declaration-stop:
-    - match: (;)|(?=\b(if|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield))\b
-      captures:
-        1: punctuation.terminator.js
+    - match: (?=;)|(?=\b(if|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield))\b
       pop: true
+
+  variable-declaration-assignment:
+    - match: =
+      scope: keyword.operator.assignment.js
+      push:
+        - include: variable-declaration-stop
+
+        - match: (?=,)
+          pop: true
+
+        - include: expression
 
   variable-declaration-recursive-readwrite:
     - match: '{{identifier}}'
       scope: variable.other.readwrite.js
       set:
         - include: variable-declaration-stop
-        - include: expression
+        - include: variable-declaration-assignment
 
         - match: ','
           scope: punctuation.separator.js
@@ -226,7 +239,7 @@ contexts:
       scope: variable.other.constant.js
       set:
         - include: variable-declaration-stop
-        - include: expression
+        - include: variable-declaration-assignment
 
         - match: ','
           scope: punctuation.separator.js
@@ -361,7 +374,7 @@ contexts:
 
         - match: \{
           scope: punctuation.section.block.begin.js
-          push:
+          set:
             - meta_content_scope: meta.block.js
 
             - match: \b(case|default)\b
@@ -385,6 +398,45 @@ contexts:
               scope: punctuation.section.block.end.js
               pop: true
 
+  for-statement:
+    - match: \bfor\b
+      scope: keyword.control.js
+      push:
+        - match: \(
+          scope: punctuation.section.parens.begin.js
+          push:
+            - meta_content_scope: meta.parens.js
+
+            - match: ;
+              scope: punctuation.terminator.js
+              push:
+                - match: ;
+                  scope: punctuation.terminator.js
+                  set:
+                    - match: (?=\))
+                      pop: true
+
+                    - include: expression
+
+                - include: expression
+
+            - match: \)
+              scope: punctuation.section.parens.end.js
+              pop: true
+
+            - include: statement
+
+        - match: \{
+          scope: punctuation.section.block.begin.js
+          push:
+            - meta_content_scope: meta.block.js
+
+            - match: \}
+              scope: punctuation.section.block.end.js
+              pop: true
+
+            - include: statement
+
   function-call:
     - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
@@ -394,10 +446,11 @@ contexts:
       push:
         - meta_scope: meta.function-call.js
         - meta_content_scope: meta.parens.js
-        - include: expression
 
         - match: ','
           scope: punctuation.separator.js
+
+        - include: expression
 
         - match: \)
           scope: punctuation.section.parens.end.js
