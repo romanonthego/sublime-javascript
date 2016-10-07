@@ -1,6 +1,15 @@
 # Sublime JavaScript
 JavaScript syntax highlighting for [SublimeText 3](https://www.sublimetext.com/) with support for es201x, [jsx](https://jsx.github.io/) and [flow](https://flowtype.org/) (tested only in [dev](https://www.sublimetext.com/3dev) builds, but should work starting from [Build 3103](https://www.sublimetext.com/blog/articles/sublime-text-3-build-3103), with introduction of [.sublime-syntax](https://www.sublimetext.com/docs/3/syntax.html))
 
+## Contributing
+If you want to contribute, just clone this repo to your packages folder (Preferences -> Browser Packages... in sublime menu) and start hacking.
+
+Even if you don't understand what's going on here, you could help writing tests (they just describe what should be highlighted and how, see tests folder).
+
+Here are the links to sublime docs:
+* https://www.sublimetext.com/docs/3/syntax.html
+* https://www.sublimetext.com/docs/3/scope_naming.html
+
 ## License
 Copyright (C) 2016  Sergey Slipchenko
 
