@@ -89,6 +89,7 @@ contexts:
     - include: if-statement
     - include: switch-statement
     - include: for-statement
+    - include: while-statement
     - include: expression
     - include: semicolon
 
@@ -568,16 +569,22 @@ contexts:
 
             - include: statement
 
-        - match: \{
-          scope: punctuation.section.block.begin.js
-          set:
-            - meta_content_scope: meta.block.js
+        - include: statement
 
-            - match: \}
-              scope: punctuation.section.block.end.js
+  while-statement:
+    - match: \bwhile\b
+      scope: keyword.control.js
+      push:
+        - match: \(
+          scope: punctuation.section.parens.begin.js
+          push:
+            - meta_content_scope: meta.parens.js
+            - include: expression
+            - match: \)
+              scope: punctuation.section.parens.end.js
               pop: true
 
-            - include: statement
+        - include: statement
 
   function-call:
     - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()

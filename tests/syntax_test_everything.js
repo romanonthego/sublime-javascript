@@ -828,6 +828,47 @@ for (let i = 0, j = 0; i < 10, j < 10; i++, j++) {
 }
 // <- punctuation.section.block.end.js
 
+for (let i = 0, j = 0; i < 10, j < 10; i++, j++)
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.parens.begin.js
+//   ^^^ storage.type.js
+//       ^ variable.other.readwrite.js
+//         ^ keyword.operator.assignment.js
+//           ^ constant.numeric.js
+//            ^ punctuation.separator.js
+//              ^ variable.other.readwrite.js
+//                ^ keyword.operator.assignment.js
+//                  ^ constant.numeric.js
+//                   ^ punctuation.terminator.js
+//                     ^ variable.other.readwrite.js
+//                       ^ keyword.operator.logical.js
+//                         ^^ constant.numeric.js
+//                           ^ keyword.operator.js
+//                             ^ variable.other.readwrite.js
+//                               ^ keyword.operator.logical.js
+//                                 ^^ constant.numeric.js
+//                                   ^ punctuation.terminator.js
+//                                     ^ variable.other.readwrite.js
+//                                      ^^ keyword.operator.arithmetic.js
+//                                        ^ keyword.operator.js
+//                                          ^ variable.other.readwrite.js
+//                                           ^^ keyword.operator.arithmetic.js
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.parens.js
+//                                             ^ punctuation.section.parens.end.js
+  console.log('iteration:', i)
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+
 for (let i of [1, 2,,3]) {
 // <- keyword.control.js
 //^ keyword.control.js
@@ -861,3 +902,79 @@ for (let i of [1, 2,,3]) {
 //        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
 // <- punctuation.section.block.end.js
+
+for (let i of [1, 2,,3])
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.parens.begin.js
+//   ^^^ storage.type.js
+//       ^ variable.other.readwrite.js
+//         ^^ keyword.control.js
+//            ^ punctuation.section.brackets.begin.js
+//             ^^^^^^^ meta.brackets.js
+//             ^ constant.numeric.js
+//              ^ punctuation.separator.js
+//                ^ constant.numeric.js
+//                 ^ punctuation.separator.js
+//                  ^ punctuation.separator.js
+//                   ^ constant.numeric.js
+//                    ^ punctuation.section.brackets.end.js
+//                     ^ punctuation.section.parens.end.js
+  console.log('iteration:', i)
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+
+while (i < 5) {
+// <- keyword.control.js
+//^^^ keyword.control.js
+//    ^ punctuation.section.parens.begin.js
+//     ^ variable.other.readwrite.js
+//       ^ keyword.operator.logical.js
+//         ^ constant.numeric.js
+//          ^ punctuation.section.parens.end.js
+//            ^ punctuation.section.block.begin.js
+  console.log('iteration:', i)
+// <- meta.block.js
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
+
+while (i < 5)
+// <- keyword.control.js
+//^^^ keyword.control.js
+//    ^ punctuation.section.parens.begin.js
+//     ^ variable.other.readwrite.js
+//       ^ keyword.operator.logical.js
+//         ^ constant.numeric.js
+//          ^ punctuation.section.parens.end.js
+  console.log('iteration:', i)
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
