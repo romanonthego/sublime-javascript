@@ -827,3 +827,37 @@ for (let i = 0, j = 0; i < 10, j < 10; i++, j++) {
 //        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
 // <- punctuation.section.block.end.js
+
+for (let i of [1, 2,,3]) {
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.parens.begin.js
+//   ^^^ storage.type.js
+//       ^ variable.other.readwrite.js
+//         ^^ keyword.control.js
+//            ^ punctuation.section.brackets.begin.js
+//             ^^^^^^^ meta.brackets.js
+//             ^ constant.numeric.js
+//              ^ punctuation.separator.js
+//                ^ constant.numeric.js
+//                 ^ punctuation.separator.js
+//                  ^ punctuation.separator.js
+//                   ^ constant.numeric.js
+//                    ^ punctuation.section.brackets.end.js
+//                     ^ punctuation.section.parens.end.js
+//                       ^ punctuation.section.block.begin.js
+  console.log('iteration:', i)
+// <- meta.block.js
+//^^^^^^^ support.type.js
+//       ^ punctuation.accessor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^^^^ string.quoted.single.js
+//                       ^ punctuation.definition.string.js
+//                        ^ punctuation.separator.js
+//                          ^ variable.other.readwrite.js
+//            ^^^^^^^^^^^^^^^ meta.parens.js
+//                           ^ punctuation.section.parens.end.js
+//        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
