@@ -120,6 +120,13 @@ okay`
 //       ^ keyword.operator.arithmetic.js
 //         ^ constant.numeric.js
 
+  5, 4, 3
+//^ constant.numeric.js
+// ^ keyword.operator.js
+//   ^ constant.numeric.js
+//    ^ keyword.operator.js
+//      ^ constant.numeric.js
+
 2 + 2 * 2
 //<- constant.numeric.js
 //^ keyword.operator.arithmetic.js
@@ -185,6 +192,20 @@ var name = 234234,
 //       ^ keyword.operator.assignment
 //         ^^^^^^ constant.numeric.js
 //               ^ punctuation.separator.js
+    gender = ('male', 'female'),
+//  ^^^^^^ variable.other.readwrite.js
+//         ^ keyword.operator.assignment
+//           ^ punctuation.section.parens.begin.js
+//            ^^^^^^^^^^^^^^^^ meta.parens.js
+//            ^ punctuation.definition.string.js
+//             ^^^^ string.quoted.single.js
+//                 ^ punctuation.definition.string.js
+//                  ^ keyword.operator.js
+//                    ^ punctuation.definition.string.js
+//                     ^^^^^^ string.quoted.single.js
+//                           ^ punctuation.definition.string.js
+//                            ^ punctuation.section.parens.end.js
+//                             ^ punctuation.separator.js
     age = 10
 //  ^^^ variable.other.readwrite.js
 //      ^ keyword.operator.assignment
@@ -376,6 +397,115 @@ s |= 10
 //   ^ punctuation.definition.string.js
 //    ^^^^^^^^^ string.quoted.single.js
 //             ^ punctuation.definition.string.js
+
+  3<something
+//^ constant.numeric.js
+// ^ keyword.operator.logical.js
+//  ^^^^^^^^^ variable.other.readwrite.js
+
+const s = <div className={css.something}>
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.js
+//        ^ punctuation.definition.generic.begin.js
+//         ^^^ entity.name.tag.js
+//             ^^^^^^^^^ entity.other.attribute-name.js
+//                      ^ punctuation.separator.js
+//                       ^ punctuation.definition.generic.begin.js
+//                        ^^^ variable.other.readwrite.js
+//                           ^ punctuation.accessor.js
+//                            ^^^^^^^^^ variable.other.member.js
+//                                     ^ punctuation.definition.generic.end.js
+//                                      ^ punctuation.definition.generic.end.js
+  some text here and {'value'}
+//^^^^^^^^^^^^^^^^^^^ text.xml.js
+//                   ^ punctuation.definition.generic.begin.js
+//                    ^ punctuation.definition.string.js
+//                     ^^^^^ string.quoted.single.js
+//                          ^ punctuation.definition.string.js
+//                           ^ punctuation.definition.generic.end.js
+  // this is some text that looks like single-line comment
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.js
+  /* this is some text that looks like multi-line comment */
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.js
+  &copy;
+//^ punctuation.definition.keyword.js
+// ^^^^ constant.character.js
+//     ^ punctuation.definition.keyword.js
+  &#x00022;
+//^ punctuation.definition.keyword.js
+// ^^^^^^^ constant.character.js
+//        ^ punctuation.definition.keyword.js
+  &#x0002C;
+//^ punctuation.definition.keyword.js
+// ^^^^^^^ constant.character.js
+//        ^ punctuation.definition.keyword.js
+  &#34;
+//^ punctuation.definition.keyword.js
+// ^^^ constant.character.js
+//    ^ punctuation.definition.keyword.js
+ </div>
+ // <- meta.tag.js
+//^^^^^ meta.tag.js
+// ^^^ entity.name.tag.js
+ // <- punctuation.definition.generic.begin.js
+//^ punctuation.definition.generic.begin.js
+//    ^ punctuation.definition.generic.end.js
+
+const s = (
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^ punctuation.section.parens.begin.js
+  <div className="something">
+//^ punctuation.definition.generic.begin.js
+// ^^^ entity.name.tag.js
+//     ^^^^^^^^^ entity.other.attribute-name.js
+//              ^ punctuation.separator.js
+//               ^ punctuation.definition.string.js
+//                ^^^^^^^^^ string.quoted.double.js
+//                         ^ punctuation.definition.string.js
+//                          ^ punctuation.definition.generic.end.js
+// ^^^ entity.name.tag.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.js
+  </div>
+//^^^^^^ meta.tag.js
+//^^ punctuation.definition.generic.begin.js
+//  ^^^ entity.name.tag.js
+//     ^ punctuation.definition.generic.end.js
+)
+// <- punctuation.section.parens.end.js
+
+const s = <d.v />
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^^^^^^^ meta.tag.js
+//        ^ punctuation.definition.generic.begin.js
+//         ^^^ entity.name.tag.js
+//             ^^ punctuation.definition.generic.end.js
+
+const s = <div
+  // this is a real comment
+//^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.js
+  id="my-id"
+//^^ entity.other.attribute-name.js
+//  ^ punctuation.separator.js
+//   ^ punctuation.definition.string.js
+//    ^^^^^ string.quoted.double.js
+//         ^ punctuation.definition.string.js
+>
+</div>
+
+const s = <div disabled />
+//        ^ punctuation.definition.generic.begin.js
+//         ^^^ entity.name.tag.js
+//             ^^^^^^^^ entity.other.attribute-name.js
+//                      ^^ punctuation.definition.generic.end.js
 
 function syncFunc(value, secondValue) {
 // <- storage.type.js
