@@ -82,6 +82,7 @@ contexts:
       scope: 'keyword.operator.js'
 
   statement:
+    - include: import-statement
     - include: block-statement
     - include: variable-declaration
     - include: function-declaration
@@ -625,3 +626,54 @@ contexts:
         - match: \)
           scope: punctuation.section.parens.end.js
           set: operator
+
+  import-member-definition:
+    - match: \bas\b
+      scope: keyword.control.import.js
+
+    - match: '{{identifier}}'
+      scope: variable.other.constant.js
+
+  import-statement:
+    - match: \bimport\b
+      scope: keyword.control.import.js
+      push:
+        - match: \'
+          scope: punctuation.definition.string.js
+          set:
+            - meta_content_scope: string.quoted.single.js
+
+            - match: \'
+              scope: punctuation.definition.string.js
+              pop: true
+
+        - match: \"
+          scope: punctuation.definition.string.js
+          set:
+            - meta_content_scope: string.quoted.double.js
+
+            - match: \"
+              scope: punctuation.definition.string.js
+              pop: true
+
+        - match: \bfrom\b
+          scope: keyword.control.import.js
+
+        - match: \,
+          scope: punctuation.separator.js
+
+        - match: '\*'
+          scope: variable.other.constant.js
+
+        - include: import-member-definition
+
+        - match: \{
+          scope: punctuation.section.braces.begin.js
+          push:
+            - meta_content_scope: meta.braces.js
+
+            - match: \}
+              scope: punctuation.section.braces.end.js
+              pop: true
+
+            - include: import-member-definition

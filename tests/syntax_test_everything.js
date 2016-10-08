@@ -158,14 +158,14 @@ void 0
 //^^ keyword.operator.word.js
 //   ^ constant.numeric.js
 
-typeof 'string' === 'string'
+typeof 'string' === "string"
 // <- keyword.operator.word.js
 //^^^^ keyword.operator.word.js
 //     ^ punctuation.definition.string.js
 //      ^^^^^^ string.quoted.single.js
 //            ^ punctuation.definition.string.js
 //                  ^ punctuation.definition.string.js
-//                   ^^^^^^ string.quoted.single.js
+//                   ^^^^^^ string.quoted.double.js
 //                         ^ punctuation.definition.string.js
 
 this
@@ -192,7 +192,7 @@ var name = 234234,
 //       ^ keyword.operator.assignment
 //         ^^^^^^ constant.numeric.js
 //               ^ punctuation.separator.js
-    gender = ('male', 'female'),
+    gender = ('male', "female"),
 //  ^^^^^^ variable.other.readwrite.js
 //         ^ keyword.operator.assignment
 //           ^ punctuation.section.parens.begin.js
@@ -202,7 +202,7 @@ var name = 234234,
 //                 ^ punctuation.definition.string.js
 //                  ^ keyword.operator.js
 //                    ^ punctuation.definition.string.js
-//                     ^^^^^^ string.quoted.single.js
+//                     ^^^^^^ string.quoted.double.js
 //                           ^ punctuation.definition.string.js
 //                            ^ punctuation.section.parens.end.js
 //                             ^ punctuation.separator.js
@@ -220,13 +220,13 @@ let test = 'Hello, variables'
 //          ^^^^^^^^^^^^^^^^ string.quoted.single.js
 //                          ^ punctuation.definition.string.js
 
-let test = 'Hello, variables'
+let test = "Hello, variables"
 // <- storage.type.js
 //^ storage.type.js
 //  ^^^^ variable.other.readwrite.js
 //       ^ keyword.operator.assignment
 //         ^ punctuation.definition.string.js
-//          ^^^^^^^^^^^^^^^^ string.quoted.single.js
+//          ^^^^^^^^^^^^^^^^ string.quoted.double.js
 //                          ^ punctuation.definition.string.js
 
 let s = 10
@@ -258,11 +258,11 @@ const test1 = 152,
 //              ^ keyword.operator.arithmetic.js
 //                ^ constant.numeric.js
 //    ^^^^^ variable.other.constant.js
-      test4 = 'string' + 'number'
+      test4 = 'string' + "number"
 //          ^ keyword.operator.assignment.js
 //             ^^^^^^ string.quoted.single.js
 //                     ^ keyword.operator.arithmetic.js
-//                        ^^^^^^ string.quoted.single.js
+//                        ^^^^^^ string.quoted.double.js
 //    ^^^^^ variable.other.constant.js
 
 let test1 = 152,
@@ -856,12 +856,12 @@ for (let i = 0, j = 0; i < 10, j < 10; i++, j++)
 //                                           ^^ keyword.operator.arithmetic.js
 //   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.parens.js
 //                                             ^ punctuation.section.parens.end.js
-  console.log('iteration:', i)
+  console.log("iteration:", i)
 //^^^^^^^ support.type.js
 //       ^ punctuation.accessor.js
 //           ^ punctuation.section.parens.begin.js
 //            ^ punctuation.definition.string.js
-//             ^^^^^^^^^^ string.quoted.single.js
+//             ^^^^^^^^^^ string.quoted.double.js
 //                       ^ punctuation.definition.string.js
 //                        ^ punctuation.separator.js
 //                          ^ variable.other.readwrite.js
@@ -920,12 +920,12 @@ for (let i of [1, 2,,3])
 //                   ^ constant.numeric.js
 //                    ^ punctuation.section.brackets.end.js
 //                     ^ punctuation.section.parens.end.js
-  console.log('iteration:', i)
+  console.log("iteration:", i)
 //^^^^^^^ support.type.js
 //       ^ punctuation.accessor.js
 //           ^ punctuation.section.parens.begin.js
 //            ^ punctuation.definition.string.js
-//             ^^^^^^^^^^ string.quoted.single.js
+//             ^^^^^^^^^^ string.quoted.double.js
 //                       ^ punctuation.definition.string.js
 //                        ^ punctuation.separator.js
 //                          ^ variable.other.readwrite.js
@@ -966,12 +966,12 @@ while (i < 5)
 //       ^ keyword.operator.logical.js
 //         ^ constant.numeric.js
 //          ^ punctuation.section.parens.end.js
-  console.log('iteration:', i)
+  console.log("iteration:", i)
 //^^^^^^^ support.type.js
 //       ^ punctuation.accessor.js
 //           ^ punctuation.section.parens.begin.js
 //            ^ punctuation.definition.string.js
-//             ^^^^^^^^^^ string.quoted.single.js
+//             ^^^^^^^^^^ string.quoted.double.js
 //                       ^ punctuation.definition.string.js
 //                        ^ punctuation.separator.js
 //                          ^ variable.other.readwrite.js
@@ -995,3 +995,72 @@ while (true) {
   }
 }
 // <- punctuation.section.block.end.js
+
+import 'react'
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^ punctuation.definition.string.js
+//      ^^^^^ string.quoted.single.js
+//           ^ punctuation.definition.string.js
+
+import React from "react"
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^^^^^ variable.other.constant.js
+//           ^^^^ keyword.control.import.js
+//                ^ punctuation.definition.string.js
+//                 ^^^^^ string.quoted.double.js
+//                      ^ punctuation.definition.string.js
+
+import {PropTypes} from 'react'
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^ punctuation.section.braces.begin.js
+//      ^^^^^^^^^ meta.braces.js
+//      ^^^^^^^^^ variable.other.constant.js
+//               ^ punctuation.section.braces.end.js
+//                 ^^^^ keyword.control.import.js
+//                      ^ punctuation.definition.string.js
+//                       ^^^^^ string.quoted.single.js
+//                            ^ punctuation.definition.string.js
+
+import {PropTypes as T} from "react"
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//      ^^^^^^^^^^^^^^ meta.braces.js
+//     ^ punctuation.section.braces.begin.js
+//      ^^^^^^^^^ variable.other.constant.js
+//                ^^ keyword.control.import.js
+//                   ^ variable.other.constant.js
+//                    ^ punctuation.section.braces.end.js
+//                      ^^^^ keyword.control.import.js
+//                           ^ punctuation.definition.string.js
+//                            ^^^^^ string.quoted.double.js
+//                                 ^ punctuation.definition.string.js
+
+import React, {PropTypes as T} from 'react'
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^^^^^ variable.other.constant.js
+//          ^ punctuation.separator.js
+//            ^ punctuation.section.braces.begin.js
+//             ^^^^^^^^^ variable.other.constant.js
+//             ^^^^^^^^^^^^^^ meta.braces.js
+//                       ^^ keyword.control.import.js
+//                          ^ variable.other.constant.js
+//                           ^ punctuation.section.braces.end.js
+//                             ^^^^ keyword.control.import.js
+//                                  ^ punctuation.definition.string.js
+//                                   ^^^^^ string.quoted.single.js
+//                                        ^ punctuation.definition.string.js
+
+import * as all from 'react'
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^ variable.other.constant.js
+//       ^^ keyword.control.import.js
+//          ^^^ variable.other.constant.js
+//              ^^^^ keyword.control.import.js
+//                   ^ punctuation.definition.string.js
+//                    ^^^^^ string.quoted.single.js
+//                         ^ punctuation.definition.string.js
