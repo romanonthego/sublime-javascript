@@ -656,14 +656,11 @@ contexts:
               scope: punctuation.definition.string.js
               pop: true
 
-        - match: \bfrom\b
+        - match: \b(default|from|type)\b|\*
           scope: keyword.control.import.js
 
         - match: \,
           scope: punctuation.separator.js
-
-        - match: '\*'
-          scope: variable.other.constant.js
 
         - include: import-member-definition
 

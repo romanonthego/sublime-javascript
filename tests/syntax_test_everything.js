@@ -1057,7 +1057,7 @@ import React, {PropTypes as T} from 'react'
 import * as all from 'react'
 // <- keyword.control.import.js
 //^^^^ keyword.control.import.js
-//     ^ variable.other.constant.js
+//     ^ keyword.control.import.js
 //       ^^ keyword.control.import.js
 //          ^^^ variable.other.constant.js
 //              ^^^^ keyword.control.import.js
