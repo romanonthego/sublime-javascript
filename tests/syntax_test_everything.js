@@ -1064,3 +1064,26 @@ import * as all from 'react'
 //                   ^ punctuation.definition.string.js
 //                    ^^^^^ string.quoted.single.js
 //                         ^ punctuation.definition.string.js
+
+export function() {
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^^^^^^^^^^^^ meta.function.js
+//     ^^^^^^^^ storage.type.js
+//             ^ punctuation.section.parens.begin.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
+
+export default function() {
+// <- keyword.control.import.js
+//^^^^ keyword.control.import.js
+//     ^^^^^^^ keyword.control.import.js
+//             ^^^^^^^^^^^^ meta.function.js
+//             ^^^^^^^^ storage.type.js
+//                     ^ punctuation.section.parens.begin.js
+//                      ^ punctuation.section.parens.end.js
+//                        ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js

@@ -83,6 +83,7 @@ contexts:
 
   statement:
     - include: import-statement
+    - include: export-statement
     - include: block-statement
     - include: variable-declaration
     - include: function-declaration
@@ -674,3 +675,14 @@ contexts:
               pop: true
 
             - include: import-member-definition
+
+  export-statement:
+    - match: \bexport\b
+      scope: keyword.control.import.js
+      push:
+        - match: \bdefault\b
+          scope: keyword.control.import.js
+          pop: true
+
+        - match: (?=\S)
+          pop: true
