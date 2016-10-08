@@ -90,6 +90,9 @@ contexts:
     - include: switch-statement
     - include: for-statement
     - include: while-statement
+    - match: \b(break|continue)\b
+      scope: keyword.control.js
+      pop: true
     - include: expression
     - include: semicolon
 

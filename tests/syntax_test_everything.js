@@ -978,3 +978,20 @@ while (i < 5)
 //            ^^^^^^^^^^^^^^^ meta.parens.js
 //                           ^ punctuation.section.parens.end.js
 //        ^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+
+while (true) {
+// <- keyword.control.js
+//^^^ keyword.control.js
+//    ^ punctuation.section.parens.begin.js
+//     ^^^^ constant.language.js
+//         ^ punctuation.section.parens.end.js
+//           ^ punctuation.section.block.begin.js
+  if (Math.random() > 0.5) {
+    continue
+//  ^^^^^^^^ keyword.control.js
+  } else {
+    break
+//  ^^^^^ keyword.control.js
+  }
+}
+// <- punctuation.section.block.end.js
