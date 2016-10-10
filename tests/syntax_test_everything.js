@@ -288,6 +288,54 @@ let s = 5 + 5 * 10 - 8 / 53
 //                     ^ keyword.operator.arithmetic.js
 //                       ^^ constant.numeric.js
 
+const s = {
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^ punctuation.section.braces.begin.js
+  first_name: 'John',
+// <- meta.braces.js
+//^^^^^^^^^^ variable.other.member.js
+//          ^ punctuation.separator.js
+//            ^ punctuation.definition.string.js
+//             ^^^^ string.quoted.single.js
+//                 ^ punctuation.definition.string.js
+//                  ^ punctuation.separator.js
+  last_name: 'Doe',
+// <- meta.braces.js
+//^^^^^^^^^ variable.other.member.js
+//         ^ punctuation.separator.js
+//           ^ punctuation.definition.string.js
+//            ^^^ string.quoted.single.js
+//               ^ punctuation.definition.string.js
+//                ^ punctuation.separator.js
+  age: 15,
+// <- meta.braces.js
+//^^^ variable.other.member.js
+//   ^ punctuation.separator.js
+//     ^^ constant.numeric.js
+//       ^ punctuation.separator.js
+  gender,
+// <- meta.braces.js
+//^^^^^^ variable.other.member.js
+//      ^ punctuation.separator.js
+  extra: {
+// <- meta.braces.js
+//^^^^^ variable.other.member.js
+//     ^ punctuation.separator.js
+//       ^ punctuation.section.braces.begin.js
+    smokes: true
+// <- meta.braces.js meta.braces.js
+//  ^^^^^^ variable.other.member.js
+//        ^ punctuation.separator.js
+//          ^^^^ constant.language.js
+  }
+// <- meta.braces.js
+//^ punctuation.section.braces.end.js
+}
+// <- punctuation.section.braces.end.js
+
 5 > 10
 // <- constant.numeric.js
 //^ keyword.operator.logical.js
@@ -517,6 +565,21 @@ const s = (
 //            ^ punctuation.definition.string.js
 //             ^^^^^^^ string.quoted.double.js
 //                    ^ punctuation.definition.string.js
+    style={{
+//  ^^^^^ entity.other.attribute-name.js
+//       ^ punctuation.separator.js
+//        ^ punctuation.definition.generic.begin.js
+//         ^ punctuation.section.braces.begin.js
+      width: '500px'
+// <- meta.braces.js
+//    ^^^^^ variable.other.member.js
+//         ^ punctuation.separator.js
+//           ^ punctuation.definition.string.js
+//            ^^^^^ string.quoted.single.js
+//                 ^ punctuation.definition.string.js
+    }}
+//  ^ punctuation.section.braces.end.js
+//   ^ punctuation.definition.generic.end.js
   >
 //^ punctuation.definition.generic.end.js
     <span className="innerText">some text</span>
@@ -1118,3 +1181,84 @@ export default function() {
 //                        ^ punctuation.section.block.begin.js
 }
 // <- punctuation.section.block.end.js
+
+type Props = {
+// <- storage.type.js
+//^^ storage.type.js
+//^^^^^^^^^^^^ meta.type.js
+//   ^^^^^ entity.name.type.js
+//         ^ keyword.operator.assignment.js
+//           ^ punctuation.section.braces.begin.js
+  disabled?: ?boolean,
+//^^^^^^^^ variable.other.member.js
+//        ^ storage.modifier.js
+//         ^ punctuation.separator.js
+//           ^ storage.modifier.js
+//            ^^^^^^^ storage.type.js
+//            ^^^^^^^ support.type.js
+//                   ^ punctuation.separator.js
+// <- meta.braces.js
+}
+// <- punctuation.section.braces.end.js
+
+type Dispatch<A> = (<R>(a: Thunk<A, R>) => R) & ((a: A) => void)
+// <- storage.type.js
+//^^ storage.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+//   ^^^^^^^^ entity.name.type.js
+//           ^ punctuation.definition.generic.begin.js
+//            ^ variable.parameter.js
+//             ^ punctuation.definition.generic.end.js
+//               ^ keyword.operator.assignment.js
+//                 ^ punctuation.section.parens.begin.js
+//                  ^ punctuation.definition.generic.begin.js
+//                   ^ variable.parameter.js
+//                    ^ punctuation.definition.generic.end.js
+//                     ^ punctuation.section.parens.begin.js
+//                      ^ variable.parameter.js
+//                       ^ punctuation.separator.js
+//                         ^^^^^^^^^^^ storage.type.js
+//                              ^ punctuation.definition.generic.begin.js
+//                               ^ variable.parameter.js
+//                                ^ punctuation.separator.js
+//                                  ^ variable.parameter.js
+//                                    ^ punctuation.section.parens.end.js
+//                                      ^^ storage.type.js
+//                                         ^ storage.type.js
+//                                          ^ punctuation.section.parens.end.js
+//                                            ^ keyword.operator.js
+//                                              ^ punctuation.section.parens.begin.js
+//                                               ^ punctuation.section.parens.begin.js
+//                                                ^ variable.parameter.js
+//                                                 ^ punctuation.separator.js
+//                                                   ^ storage.type.js
+//                                                    ^ punctuation.section.parens.end.js
+//                                                      ^ storage.type.js
+//                                                         ^^^^ storage.type.js support.type.js
+//                                                             ^ punctuation.section.parens.end.js
+
+type UnionType =
+// <- storage.type.js
+//^^ storage.type.js
+//   ^^^^^^^^^ entity.name.type.js
+//             ^ keyword.operator.assignment.js
+  | Some
+//^ keyword.operator.js
+//  ^^^^ storage.type.js
+  | None
+//^ keyword.operator.js
+//  ^^^^ storage.type.js
+
+type StringOrBoolean =
+// <- storage.type.js
+//^^ storage.type.js
+//   ^^^^^^^^^^^^^^^ entity.name.type.js
+//                   ^ keyword.operator.assignment.js
+  | string
+//^ keyword.operator.js
+//  ^^^^^^ storage.type.js
+//  ^^^^^^ support.type.js
+  | boolean
+//^ keyword.operator.js
+//  ^^^^^^^ storage.type.js
+//  ^^^^^^^ support.type.js
