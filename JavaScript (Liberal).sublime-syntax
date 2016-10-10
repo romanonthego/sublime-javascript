@@ -139,6 +139,8 @@ contexts:
             - match: (?=</{{identifier}}(\.{{identifier}})*>)
               pop: true
 
+            - include: jsx
+
         - match: (</)(\2)(>)
           captures:
             1: punctuation.definition.generic.begin.js

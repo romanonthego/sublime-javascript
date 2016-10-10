@@ -507,6 +507,37 @@ const s = <div disabled />
 //             ^^^^^^^^ entity.other.attribute-name.js
 //                      ^^ punctuation.definition.generic.end.js
 
+const s = (
+  <div
+//^ punctuation.definition.generic.begin.js
+// ^^^ entity.name.tag.js
+    className="wrapper"
+//  ^^^^^^^^^ entity.other.attribute-name.js
+//           ^ punctuation.separator.js
+//            ^ punctuation.definition.string.js
+//             ^^^^^^^ string.quoted.double.js
+//                    ^ punctuation.definition.string.js
+  >
+//^ punctuation.definition.generic.end.js
+    <span className="innerText">some text</span>
+//  ^ punctuation.definition.generic.begin.js
+//   ^^^^ entity.name.tag.js
+//        ^^^^^^^^^ entity.other.attribute-name.js
+//                 ^ punctuation.separator.js
+//                  ^ punctuation.definition.string.js
+//                   ^^^^^^^^^ string.quoted.double.js
+//                            ^ punctuation.definition.string.js
+//                             ^ punctuation.definition.generic.end.js
+//                              ^^^^^^^^^ text.xml.js
+//                                       ^^ punctuation.definition.generic.begin.js
+//                                         ^^^^ entity.name.tag.js
+//                                             ^ punctuation.definition.generic.end.js
+  </div>
+//^^ punctuation.definition.generic.begin.js
+//  ^^^ entity.name.tag.js
+//     ^ punctuation.definition.generic.end.js
+)
+
 function syncFunc(value, secondValue) {
 // <- storage.type.js
 //^^^^^^ storage.type.js
