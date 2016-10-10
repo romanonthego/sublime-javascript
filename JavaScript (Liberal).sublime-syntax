@@ -119,7 +119,7 @@ contexts:
           push:
             - meta_include_prototype: false
             - meta_content_scope: text.xml.js
-            - clear_scopes: 1
+            - clear_scopes: true
 
             - match: '(&)({{jsxEntities}}|#\d{2}|#x[\da-fA-F]{5})(;)'
               captures:
