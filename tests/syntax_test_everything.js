@@ -35,7 +35,7 @@
 //^^^^^^^ string.interpolated.js
 //       ^^ punctuation.section.embedded.js
 //         ^ punctuation.definition.string.js
-//           ^^^^^ string.interpolated.js
+//          ^^^^^^ string.interpolated.js
 //                ^ punctuation.definition.string.js
 //                  ^ keyword.operator.arithmetic.js
 //                    ^ constant.numeric.js

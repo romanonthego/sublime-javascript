@@ -292,6 +292,7 @@ contexts:
         - match: \$\{
           scope: punctuation.section.embedded.js
           push:
+            - clear_scopes: 1
             - include: expression
             - match: \}
               scope: punctuation.section.embedded.js
