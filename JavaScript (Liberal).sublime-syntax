@@ -25,6 +25,7 @@ scope: source.js
 variables:
   hexDigit: '[\da-fA-F]'
   identifier: '[_$A-Za-z][_$\w\d]*'
+  capIdentifier: '[A-Z][_$\w\d]*'
   builtinFunctions: 'isFinite|isNaN'
   keywords: 'if|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield|of|type|declare'
   # entities are stolen from https://dev.w3.org/html5/html-author/charref
@@ -72,10 +73,15 @@ contexts:
       push:
         - include: function-call-with-set # FIXME: This is really dirty, do not use it
 
-        - match: '{{identifier}}'
+        - match: '((prototype)|{{identifier}})'
           scope: variable.other.member.js
+          captures:
+            1: variable.language.js
           set: operator
 
+    - match: '{{capIdentifier}}'
+      scope: entity.name.class.js
+      push: operator
     - match: '{{identifier}}'
       scope: variable.other.readwrite.js
       push: operator
@@ -195,8 +201,8 @@ contexts:
     - match: '!'
       scope: keyword.operator.logical.js
 
-    - match: \b(delete|void|typeof)\b
-      scope: keyword.operator.word.js
+    - match: \b(delete|void|typeof|new)\b
+      scope: keyword.other.js
 
     - match: \+|-
       scope: keyword.operator.arithmetic.js
@@ -534,6 +540,9 @@ contexts:
         - match: \*
           scope: storage.modifier.js
 
+        - match: '{{capIdentifier}}'
+          scope: entity.name.class.js
+
         - match: '{{identifier}}'
           scope: entity.name.function.js
 
@@ -667,11 +676,13 @@ contexts:
         - include: statement
 
   function-call:
-    - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()
+    - match: ({{capIdentifier}})\s*(\()|(({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
-        2: support.function.js
-        3: variable.function.js
-        4: punctuation.section.parens.begin.js
+        1: entity.name.class.js
+        2: punctuation.section.parens.begin.js
+        4: support.function.js
+        5: variable.function.js
+        6: punctuation.section.parens.begin.js
       push:
         - meta_scope: meta.function-call.js
         - meta_content_scope: meta.parens.js
@@ -686,11 +697,13 @@ contexts:
           set: operator
 
   function-call-with-set:
-    - match: (({{builtinFunctions}})|({{identifier}}))\s*(\()
+    - match: ({{capIdentifier}})\s*(\()|(({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
-        2: support.function.js
-        3: variable.function.js
-        4: punctuation.section.parens.begin.js
+        1: entity.name.class.js
+        2: punctuation.section.parens.begin.js
+        4: support.function.js
+        5: variable.function.js
+        6: punctuation.section.parens.begin.js
       set:
         - meta_scope: meta.function-call.js
         - meta_content_scope: meta.parens.js

@@ -150,17 +150,17 @@ true || false
 //      ^^^^^ constant.language.js
 
 delete name
-// <- keyword.operator.word.js
-//^^^^ keyword.operator.word.js
+// <- keyword.other.js
+//^^^^ keyword.other.js
 
 void 0
-// <- keyword.operator.word.js
-//^^ keyword.operator.word.js
+// <- keyword.other.js
+//^^ keyword.other.js
 //   ^ constant.numeric.js
 
 typeof 'string' === "string"
-// <- keyword.operator.word.js
-//^^^^ keyword.operator.word.js
+// <- keyword.other.js
+//^^^^ keyword.other.js
 //     ^ punctuation.definition.string.js
 //      ^^^^^^ string.quoted.single.js
 //            ^ punctuation.definition.string.js
@@ -371,6 +371,45 @@ const s = {
 //^ punctuation.section.braces.end.js
 }
 // <- punctuation.section.braces.end.js
+
+function Dog() {
+//^^^^^^ storage.type.js
+//       ^^^ entity.name.class.js
+//          ^ punctuation.section.parens.begin.js
+//           ^ punctuation.section.parens.end.js
+//             ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
+
+Dog.prototype = {
+//<- entity.name.class.js
+//^ entity.name.class.js
+// ^ punctuation.accessor.js
+//  ^^^^^^^^^ variable.other.member.js
+//  ^^^^^^^^^ variable.language.js
+//            ^ keyword.operator.assignment.js
+//              ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
+
+const dog = new Dog()
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^ variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^^^ keyword.other.js
+//              ^^^ entity.name.class.js
+//                 ^ punctuation.section.parens.begin.js
+//                  ^ punctuation.section.parens.end.js
+//              ^^^^^ meta.function-call.js
+
+const dog = new Dog
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^ variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^^^ keyword.other.js
+//              ^^^ entity.name.class.js
 
 5 > 10
 // <- constant.numeric.js
