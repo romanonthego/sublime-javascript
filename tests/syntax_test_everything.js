@@ -372,6 +372,20 @@ const s = {
 }
 // <- punctuation.section.braces.end.js
 
+dog = {
+// <- variable.other.readwrite.js
+//^ variable.other.readwrite.js
+//  ^ keyword.operator.assignment.js
+//    ^ punctuation.section.braces.begin.js
+  age: 15,
+// <- meta.braces.js
+//^^^ variable.other.member.js
+//   ^ punctuation.separator.js
+//     ^^ constant.numeric.js
+//       ^ punctuation.separator.js
+}
+// <- punctuation.section.braces.end.js
+
 function Dog() {
 //^^^^^^ storage.type.js
 //       ^^^ entity.name.function.constructor.js
@@ -389,9 +403,100 @@ Dog.prototype = {
 //  ^^^^^^^^^ variable.other.member.js
 //  ^^^^^^^^^ variable.language.js
 //            ^ keyword.operator.assignment.js
+//              ^ punctuation.section.braces.begin.js
+  walk: function(howMuch) {
+// <- meta.braces.js
+//^^^^ entity.name.function.js
+//    ^ punctuation.separator.js
+//      ^^^^^^^^ storage.type.js
+//              ^ punctuation.section.parens.begin.js
+//               ^^^^^^^ meta.function.parameters.js
+//               ^^^^^^^ meta.parens.js
+//               ^^^^^^^ variable.parameter.js
+//                      ^ punctuation.section.parens.end.js
+//                        ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  },
+// <- meta.block.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.separator.js
+  walk(howMuch) {
+// <- meta.braces.js
+//^^^^ entity.name.function.js
+//    ^ punctuation.section.parens.begin.js
+//     ^^^^^^^ meta.function.parameters.js
+//     ^^^^^^^ meta.parens.js
+//     ^^^^^^^ variable.parameter.js
+//            ^ punctuation.section.parens.end.js
 //              ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  },
+// <- meta.braces.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.separator.js
+  'walk'(howMuch) {
+// <- meta.braces.js
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.single.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^^^^^ meta.function.parameters.js
+//       ^^^^^^^ meta.parens.js
+//       ^^^^^^^ variable.parameter.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  },
+// <- meta.braces.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.separator.js
+  "walk"(howMuch) {
+// <- meta.braces.js
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.double.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^^^^^ meta.function.parameters.js
+//       ^^^^^^^ meta.parens.js
+//       ^^^^^^^ variable.parameter.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  },
+// <- meta.braces.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.separator.js
+  [5 + 5](howMuch) {
+// <- meta.braces.js
+//^ punctuation.section.brackets.begin.js
+// ^ constant.numeric.js
+//   ^ keyword.operator.arithmetic.js
+//     ^ constant.numeric.js
+//      ^ punctuation.section.brackets.end.js
+//       ^ punctuation.section.parens.begin.js
+//        ^^^^^^^ meta.function.parameters.js
+//        ^^^^^^^ meta.parens.js
+//        ^^^^^^^ variable.parameter.js
+//               ^ punctuation.section.parens.end.js
+//                 ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  }
+// <- meta.braces.js
+//^ punctuation.section.block.end.js
 }
-// <- punctuation.section.block.end.js
+// <- punctuation.section.braces.end.js
 
 const dog = new Dog()
 // <- storage.type.js
