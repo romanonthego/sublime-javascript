@@ -325,11 +325,47 @@ const s = {
 //^^^^^ variable.other.member.js
 //     ^ punctuation.separator.js
 //       ^ punctuation.section.braces.begin.js
-    smokes: true
+    smokes: true,
 // <- meta.braces.js meta.braces.js
 //  ^^^^^^ variable.other.member.js
 //        ^ punctuation.separator.js
 //          ^^^^ constant.language.js
+    'smokes-too-much': true,
+// <- meta.braces.js meta.braces.js
+//  ^ punctuation.definition.string.js
+//  ^^^^^^^^^^^^^^^^^ variable.other.member.js
+//   ^^^^^^^^^^^^^^^ string.quoted.single.js
+//                  ^ punctuation.definition.string.js
+//                   ^ punctuation.separator.js
+//                     ^^^^ constant.language.js
+    "smokes-too-much": true,
+// <- meta.braces.js meta.braces.js
+//  ^ punctuation.definition.string.js
+//  ^^^^^^^^^^^^^^^^^ variable.other.member.js
+//   ^^^^^^^^^^^^^^^ string.quoted.double.js
+//                  ^ punctuation.definition.string.js
+//                   ^ punctuation.separator.js
+//                     ^^^^ constant.language.js
+    [someexpression]: true,
+// <- meta.braces.js meta.braces.js
+//  ^ punctuation.section.brackets.begin.js
+//  ^^^^^^^^^^^^^^^^ variable.other.member.js
+//   ^^^^^^^^^^^^^^ meta.brackets.js
+//   ^^^^^^^^^^^^^^ variable.other.readwrite.js
+//                 ^ punctuation.section.brackets.end.js
+//                  ^ punctuation.separator.js
+//                    ^^^^ constant.language.js
+    [5 + 5]: true
+// <- meta.braces.js meta.braces.js
+//  ^ punctuation.section.brackets.begin.js
+//  ^^^^^^^ variable.other.member.js
+//   ^ constant.numeric.js
+//     ^ keyword.operator.arithmetic.js
+//       ^ constant.numeric.js
+//   ^^^^^ meta.brackets.js
+//        ^ punctuation.section.brackets.end.js
+//         ^ punctuation.separator.js
+//           ^^^^ constant.language.js
   }
 // <- meta.braces.js
 //^ punctuation.section.braces.end.js

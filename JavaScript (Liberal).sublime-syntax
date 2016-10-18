@@ -331,6 +331,20 @@ contexts:
           scope: punctuation.section.brackets.end.js
           pop: true
 
+  object-literal-key-value:
+    - match: ':'
+      scope: punctuation.separator.js
+      set:
+        - match: ',|(?=})'
+          scope: punctuation.separator.js
+          pop: true
+
+        - include: expression
+
+    - match: ',|(?=})'
+      scope: punctuation.separator.js
+      pop: true
+
   object-literal:
     - match: \{
       scope: punctuation.section.braces.begin.js
@@ -339,19 +353,48 @@ contexts:
 
         - match: '{{identifier}}'
           scope: variable.other.member.js
+          push: object-literal-key-value
+
+        - match: \'
+          scope: punctuation.definition.string.js
           push:
-            - match: ':'
-              scope: punctuation.separator.js
-              set:
-                - match: ',|(?=})'
-                  scope: punctuation.separator.js
-                  pop: true
+            - meta_scope: variable.other.member.js
+            - meta_include_prototype: false
+            - meta_content_scope: string.quoted.single.js
+            - include: string-literal
 
-                - include: expression
+            - match: \'
+              scope: punctuation.definition.string.js
+              set: object-literal-key-value
 
-            - match: ',|(?=})'
-              scope: punctuation.separator.js
-              pop: true
+            - include: string-literal-no-newline
+
+        - match: \"
+          scope: punctuation.definition.string.js
+          push:
+            - meta_scope: variable.other.member.js
+            - meta_include_prototype: false
+            - meta_content_scope: string.quoted.double.js
+            - include: string-literal
+
+            - match: \"
+              scope: punctuation.definition.string.js
+              set: object-literal-key-value
+
+            - include: string-literal-no-newline
+
+        - match: \[
+          scope: punctuation.section.brackets.begin.js
+          push:
+            - meta_scope: variable.other.member.js
+            - meta_include_prototype: false
+            - meta_content_scope: meta.brackets.js
+
+            - match: \]
+              scope: punctuation.section.brackets.end.js
+              set: object-literal-key-value
+
+            - include: expression
 
         - match: \}
           scope: punctuation.section.braces.end.js
