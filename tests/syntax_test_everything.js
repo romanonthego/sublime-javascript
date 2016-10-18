@@ -374,6 +374,7 @@ const s = {
 
 function Dog() {
 //^^^^^^ storage.type.js
+//       ^^^ entity.name.function.constructor.js
 //       ^^^ entity.name.class.js
 //          ^ punctuation.section.parens.begin.js
 //           ^ punctuation.section.parens.end.js

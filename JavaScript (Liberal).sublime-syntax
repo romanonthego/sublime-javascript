@@ -541,7 +541,7 @@ contexts:
           scope: storage.modifier.js
 
         - match: '{{capIdentifier}}'
-          scope: entity.name.class.js
+          scope: entity.name.function.constructor.js entity.name.class.js
 
         - match: '{{identifier}}'
           scope: entity.name.function.js
