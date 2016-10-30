@@ -35,13 +35,7 @@ variables:
   flowBuiltinTypes: \bnumber|string|boolean|void|null|Function|Object\b
 
 contexts:
-  main:
-    - include: core
-
   prototype:
-    - include: comments
-
-  comments:
     - match: /\*
       scope: punctuation.definition.comment.js
       push:
@@ -57,12 +51,9 @@ contexts:
         - match: $
           pop: true
 
-  core:
-    - include: ignore-long-lines
+  main:
+    - match: "^.{999,}" # ignore lines longer than 999 symbols
     - include: statement
-
-  ignore-long-lines:
-    - match: "^.{999,}"
 
   expression:
     - include: arrow-function-definition
