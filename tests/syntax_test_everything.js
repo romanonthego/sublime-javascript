@@ -1625,6 +1625,66 @@ while (true) {
 }
 // <- punctuation.section.block.end.js
 
+try {
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.block.begin.js
+  localStorage.setItem('itemName', 'itemValue')
+// <- meta.block.js
+//             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+} catch (err) {
+// <- punctuation.section.block.end.js
+//^^^^^ keyword.control.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^ variable.other.readwrite.js
+//          ^ punctuation.section.parens.end.js
+//            ^ punctuation.section.block.begin.js
+  alert('localStorage usage is not allowed')
+// <- meta.block.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
+
+try {
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.block.begin.js
+  localStorage.setItem('itemName', 'itemValue')
+// <- meta.block.js
+//             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+} catch (err) {
+// <- punctuation.section.block.end.js
+//^^^^^ keyword.control.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^ variable.other.readwrite.js
+//          ^ punctuation.section.parens.end.js
+//            ^ punctuation.section.block.begin.js
+  alert('localStorage usage is not allowed')
+// <- meta.block.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+} finally {
+// <- punctuation.section.block.end.js
+//^^^^^^^ keyword.control.js
+  freeResources()
+//^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
+
+try {
+// <- keyword.control.js
+//^ keyword.control.js
+//  ^ punctuation.section.block.begin.js
+  localStorage.setItem('itemName', 'itemValue')
+// <- meta.block.js
+//             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+} finally {
+// <- punctuation.section.block.end.js
+//^^^^^^^ keyword.control.js
+  freeResources()
+//^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
+
 import 'react'
 // <- keyword.control.import.js
 //^^^^ keyword.control.import.js

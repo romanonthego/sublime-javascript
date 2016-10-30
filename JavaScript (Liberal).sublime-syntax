@@ -103,6 +103,7 @@ contexts:
     - include: switch-statement
     - include: for-statement
     - include: while-statement
+    - include: try-statement
     - match: \b(break|continue)\b
       scope: keyword.control.js
     - include: expression
@@ -870,6 +871,54 @@ contexts:
               pop: true
 
         - include: statement
+
+  catch-or-finally-block:
+    - match: \{
+      scope: punctuation.section.block.begin.js
+      set:
+        - meta_content_scope: meta.block.js
+
+        - match: \}
+          scope: punctuation.section.block.end.js
+          pop: true
+
+        - include: statement
+
+  try-statement:
+    - match: \btry\b
+      scope: keyword.control.js
+      push:
+        - match: \{
+          scope: punctuation.section.block.begin.js
+          set:
+            - meta_content_scope: meta.block.js
+
+            - match: \}
+              scope: punctuation.section.block.end.js
+              set:
+                - match: \bcatch\b
+                  scope: keyword.control.js
+                  push:
+                    - match: \(
+                      scope: punctuation.section.parens.begin.js
+                      set:
+                        - meta_content_scope: meta.block.js
+
+                        - match: \)
+                          scope: punctuation.section.parens.end.js
+                          set: catch-or-finally-block
+
+                        - match: '{{identifier}}'
+                          scope: variable.other.readwrite.js
+
+                - match: \bfinally\b
+                  scope: keyword.control.js
+                  set: catch-or-finally-block
+
+                - match: (?=\S)
+                  pop: true
+
+            - include: statement
 
   function-call:
     - match: ({{capIdentifier}})\s*(\()|(({{builtinFunctions}})|({{identifier}}))\s*(\()
