@@ -431,6 +431,21 @@ Dog.prototype = {
 // <- meta.block.js
 //^ punctuation.section.block.end.js
 // ^ punctuation.separator.js
+  walk: howMuch => {
+// <- meta.braces.js
+//^^^^ entity.name.function.js
+//    ^ punctuation.separator.js
+//              ^^ storage.type.js
+//      ^^^^^^^ meta.function.parameters.js
+//      ^^^^^^^ variable.parameter.js
+//                 ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  },
+// <- meta.block.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.separator.js
   walk(howMuch) {
 // <- meta.braces.js
 //^^^^ entity.name.function.js
@@ -603,6 +618,20 @@ class Dog extends Object.prototype {
 //^ punctuation.section.block.end.js
 // <- meta.braces.js
 // <- meta.class.js
+  walk = howMuch => {
+//^^^^ entity.name.function.js
+//     ^ keyword.operator.assignment.js
+//       ^^^^^^^ meta.function.parameters.js
+//       ^^^^^^^ variable.parameter.js
+//               ^^ storage.type.js
+//                  ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
   [5 + 5](howMuch) {
 // <- meta.braces.js
 //^ punctuation.section.brackets.begin.js
@@ -709,6 +738,20 @@ class Dog {
 //                ^^^^^^^ variable.parameter.js
 //                       ^ punctuation.section.parens.end.js
 //                         ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  walk = howMuch => {
+//^^^^ entity.name.function.js
+//     ^ keyword.operator.assignment.js
+//       ^^^^^^^ meta.function.parameters.js
+//       ^^^^^^^ variable.parameter.js
+//               ^^ storage.type.js
+//                  ^ punctuation.section.block.begin.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -1155,6 +1198,68 @@ const arrowFun = async value => {
 //^^^^^^ keyword.control.js
 //       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
+
+  (() => {
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.begin.js
+//  ^ punctuation.section.parens.end.js
+//    ^^ storage.type.js
+//       ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked arrow function')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (arg => {
+//^ punctuation.section.parens.begin.js
+// ^^^ meta.function.parameters.js
+// ^^^ variable.parameter.js
+//     ^^ storage.type.js
+//        ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked arrow function with argument')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (async () => {
+//^ punctuation.section.parens.begin.js
+// ^^^^^ storage.modifier.js
+//       ^ punctuation.section.parens.begin.js
+//        ^ punctuation.section.parens.end.js
+//          ^^ storage.type.js
+//             ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked async arrow function')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (async arg => {
+//^ punctuation.section.parens.begin.js
+// ^^^^^ storage.modifier.js
+//       ^^^ meta.function.parameters.js
+//       ^^^ variable.parameter.js
+//           ^^ storage.type.js
+//              ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked async arrow function with argument')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
 
 isFinite(Infinity) === true
 // <- meta.function-call.js support.function.js
