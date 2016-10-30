@@ -386,13 +386,22 @@ dog = {
 }
 // <- punctuation.section.braces.end.js
 
-function Dog() {
+function Dog(name) {
 //^^^^^^ storage.type.js
 //       ^^^ entity.name.function.constructor.js
 //       ^^^ entity.name.class.js
 //          ^ punctuation.section.parens.begin.js
-//           ^ punctuation.section.parens.end.js
-//             ^ punctuation.section.block.begin.js
+//           ^^^^ variable.parameter.js
+//               ^ punctuation.section.parens.end.js
+//                 ^ punctuation.section.block.begin.js
+    this.name = name
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^ variable.other.member.js
+//            ^ keyword.operator.assignment.js
+//              ^^^^ variable.other.readwrite.js
+// <- meta.block.js
+// <- meta.function.js
 }
 // <- punctuation.section.block.end.js
 
@@ -494,6 +503,238 @@ Dog.prototype = {
 // <- meta.function.js
   }
 // <- meta.braces.js
+//^ punctuation.section.block.end.js
+}
+// <- punctuation.section.braces.end.js
+
+class Dog extends Object.prototype {
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^ entity.name.class.js
+//        ^^^^^^^ storage.modifier.js
+//                ^^^^^^^^^^^^^^^^ entity.other.inherited-class.js
+//                ^^^^^^ support.class.js
+//                      ^ punctuation.accessor.js
+//                       ^^^^^^^^^ variable.other.member.js
+//                       ^^^^^^^^^ variable.language.js
+//                                 ^ punctuation.section.braces.begin.js
+  constructor(name) {
+//^^^^^^^^^^^ entity.name.function.constructor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^^^^ variable.parameter.js
+//                ^ punctuation.section.parens.end.js
+//                  ^ punctuation.section.block.begin.js
+    this.name = name
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^ variable.other.member.js
+//            ^ keyword.operator.assignment.js
+//              ^^^^ variable.other.readwrite.js
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  walk(howMuch) {
+//^^^^ entity.name.function.js
+//    ^ punctuation.section.parens.begin.js
+//     ^^^^^^^ variable.parameter.js
+//            ^ punctuation.section.parens.end.js
+//              ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  "walk"(howMuch) {
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.double.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^^^^^ variable.parameter.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  'walk'(howMuch) {
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.single.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  member = 'value'
+//^^^^^^ variable.other.member.js
+//       ^ keyword.operator.assignment.js
+//         ^ punctuation.definition.string.js
+//          ^^^^^ string.quoted.single.js
+//               ^ punctuation.definition.string.js
+// <- meta.braces.js
+// <- meta.class.js
+  walk = function(howMuch) {
+//^^^^ entity.name.function.js
+//     ^ keyword.operator.assignment.js
+//       ^^^^^^^^ storage.type.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^ variable.parameter.js
+//                       ^ punctuation.section.parens.end.js
+//                         ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  [5 + 5](howMuch) {
+// <- meta.braces.js
+//^ punctuation.section.brackets.begin.js
+// ^ constant.numeric.js
+//   ^ keyword.operator.arithmetic.js
+//     ^ constant.numeric.js
+//      ^ punctuation.section.brackets.end.js
+//       ^ punctuation.section.parens.begin.js
+//        ^^^^^^^ meta.function.parameters.js
+//        ^^^^^^^ meta.parens.js
+//        ^^^^^^^ variable.parameter.js
+//               ^ punctuation.section.parens.end.js
+//                 ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  }
+// <- meta.braces.js
+// <- meta.class.js
+//^ punctuation.section.block.end.js
+}
+// <- punctuation.section.braces.end.js
+
+class Dog {
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^ entity.name.class.js
+//        ^ punctuation.section.braces.begin.js
+  constructor(name) {
+//^^^^^^^^^^^ entity.name.function.constructor.js
+//           ^ punctuation.section.parens.begin.js
+//            ^^^^ variable.parameter.js
+//                ^ punctuation.section.parens.end.js
+//                  ^ punctuation.section.block.begin.js
+    this.name = name
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^ variable.other.member.js
+//            ^ keyword.operator.assignment.js
+//              ^^^^ variable.other.readwrite.js
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  walk(howMuch) {
+//^^^^ entity.name.function.js
+//    ^ punctuation.section.parens.begin.js
+//     ^^^^^^^ variable.parameter.js
+//            ^ punctuation.section.parens.end.js
+//              ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  "walk"(howMuch) {
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.double.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//       ^^^^^^^ variable.parameter.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  'walk'(howMuch) {
+//^ punctuation.definition.string.js
+// ^^^^ entity.name.function.js
+// ^^^^ string.quoted.single.js
+//     ^ punctuation.definition.string.js
+//      ^ punctuation.section.parens.begin.js
+//              ^ punctuation.section.parens.end.js
+//                ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  member = 'value'
+//^^^^^^ variable.other.member.js
+//       ^ keyword.operator.assignment.js
+//         ^ punctuation.definition.string.js
+//          ^^^^^ string.quoted.single.js
+//               ^ punctuation.definition.string.js
+// <- meta.braces.js
+// <- meta.class.js
+  walk = function(howMuch) {
+//^^^^ entity.name.function.js
+//     ^ keyword.operator.assignment.js
+//       ^^^^^^^^ storage.type.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^ variable.parameter.js
+//                       ^ punctuation.section.parens.end.js
+//                         ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.class.js meta.function.js
+  }
+//^ punctuation.section.block.end.js
+// <- meta.braces.js
+// <- meta.class.js
+  [5 + 5](howMuch) {
+// <- meta.braces.js
+//^ punctuation.section.brackets.begin.js
+// ^ constant.numeric.js
+//   ^ keyword.operator.arithmetic.js
+//     ^ constant.numeric.js
+//      ^ punctuation.section.brackets.end.js
+//       ^ punctuation.section.parens.begin.js
+//        ^^^^^^^ meta.function.parameters.js
+//        ^^^^^^^ meta.parens.js
+//        ^^^^^^^ variable.parameter.js
+//               ^ punctuation.section.parens.end.js
+//                 ^ punctuation.section.block.begin.js
+    console.log('I am dog and I am walking...')
+// <- meta.braces.js meta.block.js
+// <- meta.function.js
+  }
+// <- meta.braces.js
+// <- meta.class.js
 //^ punctuation.section.block.end.js
 }
 // <- punctuation.section.braces.end.js
