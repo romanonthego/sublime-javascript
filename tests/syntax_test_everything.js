@@ -1786,6 +1786,7 @@ type Props = {
 //           ^ punctuation.section.braces.begin.js
   disabled?: ?boolean,
 //^^^^^^^^ variable.other.member.js
+//^^^^^^^^ string.unquoted.js
 //        ^ storage.modifier.js
 //         ^ punctuation.separator.js
 //           ^ storage.modifier.js
@@ -1793,8 +1794,109 @@ type Props = {
 //            ^^^^^^^ support.type.js
 //                   ^ punctuation.separator.js
 // <- meta.braces.js
+  disabled2: ?boolean,
+//^^^^^^^^^ variable.other.member.js
+//^^^^^^^^^ string.unquoted.js
+//         ^ punctuation.separator.js
+//           ^ storage.modifier.js
+//            ^^^^^^^ support.type.js
+//                   ^ punctuation.separator.js
+// <- meta.braces.js
+  disabled3: boolean
+//^^^^^^^^^ variable.other.member.js
+//^^^^^^^^^ string.unquoted.js
+//         ^ punctuation.separator.js
+//           ^^^^^^^ support.type.js
+// <- meta.braces.js
 }
 // <- punctuation.section.braces.end.js
+
+x = 5
+// <- variable.other.readwrite.js
+//^ keyword.operator.assignment.js
+//  ^ constant.numeric.js
+
+type Callback = () => void
+// <- storage.type.js
+//^^ storage.type.js
+//   ^^^^^^^^ entity.name.type.js
+//            ^ keyword.operator.assignment.js
+//              ^ punctuation.section.parens.begin.js
+//               ^ punctuation.section.parens.end.js
+//                 ^^ storage.type.js
+//                    ^^^^ support.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+
+type AnotherCallback = (arg1: string, arg2: number) => void
+// <- storage.type.js
+//^^ storage.type.js
+//   ^^^^^^^^^^^^^^^ entity.name.type.js
+//                   ^ keyword.operator.assignment.js
+//                     ^ punctuation.section.parens.begin.js
+//                      ^^^^ variable.parameter.js
+//                          ^ punctuation.separator.js
+//                            ^^^^^^ support.type.js
+//                                  ^ punctuation.separator.js
+//                                    ^^^^ variable.parameter.js
+//                                        ^ punctuation.separator.js
+//                                          ^^^^^^ support.type.js
+//                                                ^ punctuation.section.parens.end.js
+//                                                  ^^ storage.type.js
+//                                                     ^^^^ support.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+
+type Dispatch = (a: Thunk<A, R>) => R
+// <- storage.type.js
+//^^ storage.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+//   ^^^^^^^^ entity.name.type.js
+//            ^ keyword.operator.assignment.js
+//              ^ punctuation.section.parens.begin.js
+//               ^ variable.parameter.js
+//                ^ punctuation.separator.js
+//                       ^ punctuation.definition.generic.begin.js
+//                        ^ variable.parameter.js
+//                         ^ punctuation.separator.js
+//                           ^ variable.parameter.js
+//                             ^ punctuation.section.parens.end.js
+//                              ^^ storage.type.js
+
+type Dispatch<A> = <R>(a: Thunk<A, R>) => R
+// <- storage.type.js
+//^^ storage.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+//   ^^^^^^^^ entity.name.type.js
+//           ^ punctuation.definition.generic.begin.js
+//            ^ variable.parameter.js
+//             ^ punctuation.definition.generic.end.js
+//               ^ keyword.operator.assignment.js
+//                 ^ punctuation.definition.generic.begin.js
+//                  ^ variable.parameter.js
+//                   ^ punctuation.definition.generic.end.js
+//                    ^ punctuation.section.parens.begin.js
+//                     ^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                             ^ punctuation.definition.generic.begin.js
+//                              ^ variable.parameter.js
+//                               ^ punctuation.separator.js
+//                                 ^ variable.parameter.js
+//                                   ^ punctuation.section.parens.end.js
+//                                     ^^ storage.type.js
+
+type Dispatch<A> = (a: A) => void
+// <- storage.type.js
+//^^ storage.type.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.type.js
+//   ^^^^^^^^ entity.name.type.js
+//           ^ punctuation.definition.generic.begin.js
+//            ^ variable.parameter.js
+//             ^ punctuation.definition.generic.end.js
+//               ^ keyword.operator.assignment.js
+//                 ^ punctuation.section.parens.begin.js
+//                  ^ variable.parameter.js
+//                   ^ punctuation.separator.js
+//                      ^ punctuation.section.parens.end.js
+//                           ^^^^ support.type.js
 
 type Dispatch<A> = (<R>(a: Thunk<A, R>) => R) & ((a: A) => void)
 // <- storage.type.js
