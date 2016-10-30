@@ -26,7 +26,7 @@ variables:
   hexDigit: '[\da-fA-F]'
   identifier: '\b[_$A-Za-z][_$\w\d]*\b'
   capIdentifier: '\b[A-Z][_$\w\d]*\b'
-  builtinFunctions: 'isFinite|isNaN'
+  builtinFunctions: 'isFinite|isNaN|require'
   fn: \b(async\s+)?(function)\b
   arrowFn: (\basync\s)?\s*(\(([^(]*)\s*\)|{{identifier}})\s*(=>)
   keywords: \bif|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield|of|type|declare\b
@@ -492,13 +492,13 @@ contexts:
         - meta_content_scope: meta.braces.js
 
         - match: '({{identifier}})(?=\s*:\s*({{fn}}|{{arrowFn}}))'
-          scope: variable.other.member.js
+          scope: variable.other.member.js string.unquoted.js
           captures:
             1: entity.name.function.js
           push: object-literal-key-value
 
         - match: '({{identifier}})(?=\s*\()'
-          scope: variable.other.member.js
+          scope: variable.other.member.js string.unquoted.js
           captures:
             1: entity.name.function.js
           push: object-literal-key-value
@@ -520,7 +520,7 @@ contexts:
           push: object-literal-key-value
 
         - match: '{{identifier}}'
-          scope: variable.other.member.js
+          scope: variable.other.member.js string.unquoted.js
           push: object-literal-key-value
 
         - match: \'
@@ -569,7 +569,7 @@ contexts:
           pop: true
 
   builtin:
-    - match: \b(Infinity|NaN)\b
+    - match: \b(Infinity|NaN|null|undefined)\b
       scope: support.constant.js
 
     - match: \b(this|super)\b
@@ -581,8 +581,11 @@ contexts:
     - match: '{{builtinFunctions}}'
       scope: support.function.js
 
-    - match: \b(Math|console)\b
+    - match: \b(Math|console|window|global)\b
       scope: support.type.js
+
+    - match: \b(exports|module)\b
+      scope: support.module.js
 
   block-statement:
     - match: \{

@@ -297,6 +297,7 @@ const s = {
   first_name: 'John',
 // <- meta.braces.js
 //^^^^^^^^^^ variable.other.member.js
+//^^^^^^^^^^ string.unquoted.js
 //          ^ punctuation.separator.js
 //            ^ punctuation.definition.string.js
 //             ^^^^ string.quoted.single.js
@@ -305,6 +306,7 @@ const s = {
   last_name: 'Doe',
 // <- meta.braces.js
 //^^^^^^^^^ variable.other.member.js
+//^^^^^^^^^ string.unquoted.js
 //         ^ punctuation.separator.js
 //           ^ punctuation.definition.string.js
 //            ^^^ string.quoted.single.js
@@ -313,21 +315,25 @@ const s = {
   age: 15,
 // <- meta.braces.js
 //^^^ variable.other.member.js
+//^^^ string.unquoted.js
 //   ^ punctuation.separator.js
 //     ^^ constant.numeric.js
 //       ^ punctuation.separator.js
   gender,
 // <- meta.braces.js
 //^^^^^^ variable.other.member.js
+//^^^^^^ string.unquoted.js
 //      ^ punctuation.separator.js
   extra: {
 // <- meta.braces.js
 //^^^^^ variable.other.member.js
+//^^^^^ string.unquoted.js
 //     ^ punctuation.separator.js
 //       ^ punctuation.section.braces.begin.js
     smokes: true,
 // <- meta.braces.js meta.braces.js
 //  ^^^^^^ variable.other.member.js
+//  ^^^^^^ string.unquoted.js
 //        ^ punctuation.separator.js
 //          ^^^^ constant.language.js
     'smokes-too-much': true,
@@ -380,6 +386,7 @@ dog = {
   age: 15,
 // <- meta.braces.js
 //^^^ variable.other.member.js
+//^^^ string.unquoted.js
 //   ^ punctuation.separator.js
 //     ^^ constant.numeric.js
 //       ^ punctuation.separator.js
@@ -1038,6 +1045,7 @@ const s = (
       width: '500px'
 // <- meta.braces.js
 //    ^^^^^ variable.other.member.js
+//    ^^^^^ string.unquoted.js
 //         ^ punctuation.separator.js
 //           ^ punctuation.definition.string.js
 //            ^^^^^ string.quoted.single.js
