@@ -185,6 +185,12 @@ var x, y, z
 //      ^ punctuation.separator.js
 //        ^ variable.other.readwrite.js
 
+return 5, 4
+//^^^^ keyword.control.js
+//     ^ constant.numeric.js
+//      ^ keyword.operator.js
+//        ^ constant.numeric.js
+
 var name = 234234,
 // <- storage.type.js
 //^ storage.type.js
@@ -235,11 +241,36 @@ let s = 10
 //    ^ keyword.operator.assignment.js
 //  ^ variable.other.readwrite.js
 
+process.env.NODE_ENV = 5
+// <- support.type.js
+//^^^^^ support.type.js
+//     ^ punctuation.accessor.js
+//      ^^^ variable.other.member.js
+//         ^ punctuation.accessor.js
+//          ^^^^^^^^ variable.other.member.js
+//                   ^ keyword.operator.assignment
+//                     ^ constant.numeric.js
+
+const shouldDebug = process.env.NODE_ENV !== 'production'
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^^^^^^^^^ variable.other.constant.js
+//                ^ keyword.operator.assignment.js
+//                  ^^^^^^^ support.type.js
+//                         ^ punctuation.accessor.js
+//                          ^^^ variable.other.member.js
+//                             ^ punctuation.accessor.js
+//                              ^^^^^^^^ variable.other.member.js
+//                                       ^^^ keyword.operator.logical.js
+//                                           ^ punctuation.definition.string.js
+//                                            ^^^^^^^^^^ string.quoted.single.js
+//                                                      ^ punctuation.definition.string.js
+
 const x = 153.3
 // <- storage.type.js
 //^^^ storage.type.js
-//      ^ keyword.operator.assignment.js
 //    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
 
 const test1 = 152,
 // <- storage.type.js
@@ -287,6 +318,31 @@ let s = 5 + 5 * 10 - 8 / 53
 //                   ^ constant.numeric.js
 //                     ^ keyword.operator.arithmetic.js
 //                       ^^ constant.numeric.js
+
+const middleware = [
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^^^^^^^^ variable.other.constant.js
+//               ^ keyword.operator.assignment.js
+//                 ^ punctuation.section.brackets.begin.js
+  thunk(loadContext, cookieManager),
+// <- meta.brackets.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+//                                 ^ punctuation.separator.js
+]
+// <- punctuation.section.brackets.end.js
+
+const middleware = [
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^^^^^^^^ variable.other.constant.js
+//               ^ keyword.operator.assignment.js
+//                 ^ punctuation.section.brackets.begin.js
+  thunk(loadContext, cookieManager)
+// <- meta.brackets.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+]
+// <- punctuation.section.brackets.end.js
 
 const s = {
 // <- storage.type.js
@@ -355,7 +411,6 @@ const s = {
     [someexpression]: true,
 // <- meta.braces.js meta.braces.js
 //  ^ punctuation.section.brackets.begin.js
-//  ^^^^^^^^^^^^^^^^ variable.other.member.js
 //   ^^^^^^^^^^^^^^ meta.brackets.js
 //   ^^^^^^^^^^^^^^ variable.other.readwrite.js
 //                 ^ punctuation.section.brackets.end.js
@@ -364,7 +419,6 @@ const s = {
     [5 + 5]: true
 // <- meta.braces.js meta.braces.js
 //  ^ punctuation.section.brackets.begin.js
-//  ^^^^^^^ variable.other.member.js
 //   ^ constant.numeric.js
 //     ^ keyword.operator.arithmetic.js
 //       ^ constant.numeric.js
@@ -798,7 +852,21 @@ const dog = new Dog()
 //              ^^^ entity.name.class.js
 //                 ^ punctuation.section.parens.begin.js
 //                  ^ punctuation.section.parens.end.js
-//              ^^^^^ meta.function-call.js
+//          ^^^^^^^^^ meta.function-call.js
+
+const dog = new Dog('pluto')
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^ variable.other.constant.js
+//        ^ keyword.operator.assignment.js
+//          ^^^ keyword.other.js
+//              ^^^ entity.name.class.js
+//                 ^ punctuation.section.parens.begin.js
+//                  ^ punctuation.definition.string.js
+//                   ^^^^^ string.quoted.single.js
+//                        ^ punctuation.definition.string.js
+//                         ^ punctuation.section.parens.end.js
+//          ^^^^^^^^^^^^^^^^ meta.function-call.js
 
 const dog = new Dog
 // <- storage.type.js
@@ -807,6 +875,7 @@ const dog = new Dog
 //        ^ keyword.operator.assignment.js
 //          ^^^ keyword.other.js
 //              ^^^ entity.name.class.js
+//          ^^^^^^^ meta.function-call.js
 
 5 > 10
 // <- constant.numeric.js
@@ -1171,11 +1240,91 @@ const arrowFun = (value1, value2) => {
 //                              ^^^^^^ meta.function.js
 //                              ^ punctuation.section.parens.end.js
 //                                ^^ storage.type.js
+//                                   ^ punctuation.section.block.begin.js
   return isFinite(Infinity)
 // <- meta.function.js
 //^^^^^^ keyword.control.js
 //       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
 }
+// <- punctuation.section.block.end.js
+
+const arrowFun = (value1, value2) => ({
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^^^^^^ meta.function.js
+//                              ^ punctuation.section.parens.end.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.parens.begin.js
+//                                    ^ punctuation.section.braces.begin.js
+  return isFinite(Infinity)
+// <- meta.function.js meta.braces.js
+//^^^^^^ string.unquoted.js
+//^^^^^^ variable.other.member.js
+//       ^^^^^^^^^^^^^^^^^^ invalid.illegal.js
+  })
+// <- meta.braces.js
+//^ punctuation.section.braces.end.js
+// ^ punctuation.section.parens.end.js
+
+const arrowFun = (value1, value2) => ({
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^^^^^^ meta.function.js
+//                              ^ punctuation.section.parens.end.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.parens.begin.js
+//                                    ^ punctuation.section.braces.begin.js
+  key: 'value',
+// <- meta.function.js meta.braces.js
+//^^^ string.unquoted.js
+//^^^ variable.other.member.js
+//   ^ punctuation.separator.js
+//     ^ punctuation.definition.string.js
+//      ^^^^^ string.quoted.single.js
+//           ^ punctuation.definition.string.js
+//            ^ punctuation.separator.js
+  })
+// <- meta.braces.js
+//^ punctuation.section.braces.end.js
+// ^ punctuation.section.parens.end.js
+
+const arrowFun = (value1, value2) => {
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^^^^^^ meta.function.js
+//                              ^ punctuation.section.parens.end.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.block.begin.js
+  key: 'value',
+// <- meta.function.js
+//^^^ entity.name.label.js
+//   ^ punctuation.separator.js
+}
+// <- punctuation.section.block.end.js
 
 const arrowFun = value => {
 // <- storage.type.js
@@ -1268,6 +1417,20 @@ const arrowFun = async value => {
 // <- punctuation.section.block.end.js
 //^ punctuation.section.parens.begin.js
 // ^ punctuation.section.parens.end.js
+
+store => next => action => {
+// <- variable.parameter.js
+// <- meta.function.parameters.js
+//    ^^ storage.type.js
+//       ^^^^ variable.parameter.js
+//       ^^^^ meta.function.parameters.js
+//            ^^ storage.type.js
+//               ^^^^^^ variable.parameter.js
+//               ^^^^^^ meta.function.parameters.js
+//                      ^^ storage.type.js
+//                         ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
 
 isFinite(Infinity) === true
 // <- meta.function-call.js support.function.js
@@ -1636,6 +1799,7 @@ try {
 // <- punctuation.section.block.end.js
 //^^^^^ keyword.control.js
 //      ^ punctuation.section.parens.begin.js
+//       ^^^ meta.parens.js
 //       ^^^ variable.other.readwrite.js
 //          ^ punctuation.section.parens.end.js
 //            ^ punctuation.section.block.begin.js
