@@ -1,6 +1,17 @@
 # Sublime JavaScript
 JavaScript syntax highlighting for [SublimeText 3](https://www.sublimetext.com/) with support for es201x, [jsx](https://jsx.github.io/) and [flow](https://flowtype.org/) (tested only in [dev](https://www.sublimetext.com/3dev) builds, but should work starting from [Build 3103](https://www.sublimetext.com/blog/articles/sublime-text-3-build-3103), with introduction of [.sublime-syntax](https://www.sublimetext.com/docs/3/syntax.html))
 
+## Screenshots
+
+**NOTE** In current version, syntax highlighting might differ slightly,
+This is a work-in-progress and is not officially released yet.
+
+### Babel Sublime
+![Babel Sublime](/screenshots/babel-sublime.png)
+
+### Sublime Javascript
+![Sublime JavaScript](/screenshots/sublime-javascript.png)
+
 ## Installation
 
 There's only one way to install this package for now, Package Control support will come later, when it matures a bit.
