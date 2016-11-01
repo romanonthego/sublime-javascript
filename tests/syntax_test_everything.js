@@ -18,6 +18,11 @@
 // <- comment.line.js punctuation.definition.comment.js
 // ^^^^^^^^^^^^^^^ comment.line.js
 
+5 * 5
+// <- constant.numeric.js
+//^ keyword.operator.arithmetic.js
+//  ^ constant.numeric.js
+
 'use strict'
 // <- punctuation.definition.string.js
 //^^^^^^^^^ string.quoted.single.js
@@ -79,8 +84,9 @@ okay`
 //   ^ constant.numeric.js
 //    ^ punctuation.section.parens.end.js
 
-0.
+0.;
 // <- constant.numeric.js
+//^ punctuation.terminator.js
 
 .0
 // <- constant.numeric.js
@@ -113,12 +119,19 @@ okay`
 // <- constant.numeric.hex.js
 //^^^^^^^ constant.numeric.hex.js
 
+0238
+// <- constant.numeric.octal.js
+//^^ constant.numeric.octal.js
+
 ((2 + 2) * 2)
+// <- punctuation.section.parens.begin.js
 //^ constant.numeric.js
 //  ^ keyword.operator.arithmetic.js
 //    ^ constant.numeric.js
+//     ^ punctuation.section.parens.end.js
 //       ^ keyword.operator.arithmetic.js
 //         ^ constant.numeric.js
+//          ^ punctuation.section.parens.end.js
 
   5, 4, 3
 //^ constant.numeric.js
@@ -133,10 +146,6 @@ okay`
 //  ^ constant.numeric.js
 //    ^ keyword.operator.arithmetic.js
 //      ^ constant.numeric.js
-
-0238
-// <- constant.numeric.octal.js
-//^^ constant.numeric.octal.js
 
 true
 // <- constant.language.js
@@ -251,7 +260,21 @@ process.env.NODE_ENV = 5
 //                   ^ keyword.operator.assignment
 //                     ^ constant.numeric.js
 
-const shouldDebug = process.env.NODE_ENV !== 'production'
+process.env.BABEL_ENV = process.env.NODE_ENV
+// <- support.type.js
+//^^^^^ support.type.js
+//     ^ punctuation.accessor.js
+//      ^^^ variable.other.member.js
+//         ^ punctuation.accessor.js
+//          ^^^^^^^^^ variable.other.member.js
+//                    ^ keyword.operator.assignment
+//                      ^^^^^^^ support.type.js
+//                             ^ punctuation.accessor.js
+//                              ^^^ variable.other.member.js
+//                                 ^ punctuation.accessor.js
+//                                  ^^^^^^^^ variable.other.member.js
+
+const shouldDebug = process.env.NODE_ENV !== 'production',
 // <- storage.type.js
 //^^^ storage.type.js
 //    ^^^^^^^^^^^ variable.other.constant.js
@@ -265,6 +288,11 @@ const shouldDebug = process.env.NODE_ENV !== 'production'
 //                                           ^ punctuation.definition.string.js
 //                                            ^^^^^^^^^^ string.quoted.single.js
 //                                                      ^ punctuation.definition.string.js
+//                                                       ^ punctuation.separator.js
+      x = 9
+//    ^ variable.other.constant.js
+//      ^ keyword.operator.assignment.js
+//        ^ constant.numeric.js
 
 const x = 153.3
 // <- storage.type.js
@@ -289,11 +317,25 @@ const test1 = 152,
 //              ^ keyword.operator.arithmetic.js
 //                ^ constant.numeric.js
 //    ^^^^^ variable.other.constant.js
-      test4 = 'string' + "number"
+      test4 = 'string' + "number",
 //          ^ keyword.operator.assignment.js
 //             ^^^^^^ string.quoted.single.js
 //                     ^ keyword.operator.arithmetic.js
+//                       ^ punctuation.definition.string.js
 //                        ^^^^^^ string.quoted.double.js
+//                              ^ punctuation.definition.string.js
+//                               ^ punctuation.separator.js
+//    ^^^^^ variable.other.constant.js
+      test4 = 'string' + `number ${2}`
+//          ^ keyword.operator.assignment.js
+//             ^^^^^^ string.quoted.single.js
+//                     ^ keyword.operator.arithmetic.js
+//                       ^ punctuation.definition.string.js
+//                        ^^^^^^^^^^^ string.interpolated.js
+//                               ^^ punctuation.section.embedded.js
+//                                 ^ constant.numeric.js
+//                                  ^ punctuation.section.embedded.js
+//                                   ^ punctuation.definition.string.js
 //    ^^^^^ variable.other.constant.js
 
 let test1 = 152,
@@ -447,14 +489,424 @@ dog = {
 }
 // <- punctuation.section.braces.end.js
 
+  (function fn(someArg) {
+//^ punctuation.section.parens.begin.js
+// ^^^^^^^^ storage.type.js
+//          ^^ entity.name.function.js
+//            ^ punctuation.section.parens.begin.js
+// ^^^^^^^^^^^^ meta.function.js
+//             ^^^^^^^ meta.parens.js meta.parens.js meta.function.parameters.js - meta.function.js
+//                    ^ punctuation.section.parens.end.js
+//                      ^ punctuation.section.block.begin.js
+//                    ^^^ meta.function.js - meta.function.parameters.js
+    this.myApi = function() {
+// <- meta.function.js
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^^^^^^^^ storage.type.js
+//                       ^ punctuation.section.parens.begin.js
+//                        ^ punctuation.section.parens.end.js
+//                          ^ punctuation.section.block.begin.js
+//       ^^^^^^^^^^^^^^^^^^^^ meta.function.js
+    }
+// <- meta.function.js
+//^^ meta.function.js
+    this.myApi = async function() {
+// <- meta.function.js
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//                     ^^^^^^^^ storage.type.js
+//                             ^ punctuation.section.parens.begin.js
+//                              ^ punctuation.section.parens.end.js
+//                                ^ punctuation.section.block.begin.js
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.js
+    }
+// <- meta.function.js
+//^^ meta.function.js
+    this.myApi = () => {
+// <- meta.function.js
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^ punctuation.section.parens.end.js
+//                  ^^ storage.type.js
+//                     ^ punctuation.section.block.begin.js
+//       ^^^^^^^^^^^^^^^ meta.function.js
+    }
+// <- meta.function.js
+//^^ meta.function.js
+    this.myApi = async () => {
+// <- meta.function.js
+//  ^^^^ variable.language.js
+//      ^ punctuation.accessor.js
+//       ^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ storage.modifier.js
+//                     ^ punctuation.section.parens.begin.js
+//                      ^ punctuation.section.parens.end.js
+//                        ^^ storage.type.js
+//                           ^ punctuation.section.block.begin.js
+//       ^^^^^^^^^^^^^^^^^^^^^ meta.function.js
+    }
+// <- meta.function.js
+//^^ meta.function.js
+  })()
+// <- meta.parens.js meta.function.js meta.block.js
+//^ punctuation.section.block.end.js
+// ^ punctuation.section.parens.end.js
+
+function syncFunc(value, secondValue) {
+// <- storage.type.js
+//^^^^^^ storage.type.js
+//       ^^^^^^^^ entity.name.function.js
+//^^^^^^^^^^^^^^^^ meta.function.js
+//                ^^^^^ variable.parameter.js
+//                     ^ punctuation.separator.js
+//                       ^^^^^^^^^^^ variable.parameter.js
+//                ^^^^^^^^^^^^^^^^^^ meta.parens.js meta.function.parameters.js - meta.function.js
+//                                  ^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+function *syncFunc(value, secondValue) {
+// <- storage.type.js
+//^^^^^^ storage.type.js
+//       ^ storage.modifier.js
+//^^^^^^^^^^^^^^^^^ meta.function.js
+//        ^^^^^^^^ entity.name.function.js
+//                 ^^^^^^^^^^^^^^^^^^ meta.parens.js meta.function.parameters.js - meta.function.js
+//                 ^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^^^^^^ variable.parameter.js
+//                                   ^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+function* syncFunc(value, secondValue) {
+// <- storage.type.js
+//^^^^^^ storage.type.js
+//      ^ storage.modifier.js
+//^^^^^^^^^^^^^^^^^ meta.function.js
+//        ^^^^^^^^ entity.name.function.js
+//                ^ punctuation.section.parens.begin.js
+//                 ^^^^^^^^^^^^^^^^^^ meta.parens.js meta.function.parameters.js - meta.function.js
+//                 ^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^^^^^^ variable.parameter.js
+//                                   ^ punctuation.section.parens.end.js
+//                                   ^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+async function asyncFun(value) {
+// <- storage.modifier.js
+//^^^ storage.modifier.js
+//    ^^^^^^^^ storage.type.js
+//    ^^^^^^^^^^^^^^^^^^ meta.function.js
+//             ^^^^^^^^ entity.name.function.js
+//                     ^ punctuation.section.parens.begin.js
+//                      ^^^^^ meta.parens.js meta.function.parameters.js - meta.function.js
+//                      ^^^^^ variable.parameter.js
+//                           ^ punctuation.section.parens.end.js
+//                           ^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+const simpleFn = x => x * 2
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ variable.parameter.js
+//               ^ meta.function.parameters.js - meta.function.js
+//                 ^^ storage.type.js
+//                    ^ variable.other.readwrite.js
+//                      ^ keyword.operator.arithmetic.js
+//                        ^ constant.numeric.js
+//                  ^^^^^^^ meta.function.js
+
+const arrowFun = (value1, value2) => {
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js - meta.function.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^ punctuation.section.parens.end.js
+//                              ^ meta.function.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.block.begin.js
+//                                ^^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+// <- punctuation.section.block.end.js
+
+const arrowFun = (value1, value2) => ({
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js - meta.function.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^ punctuation.section.parens.end.js
+//                              ^ meta.function.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.parens.begin.js
+//                                    ^ punctuation.section.braces.begin.js
+//                                ^^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js meta.braces.js
+//^^^^^^ string.unquoted.js
+//^^^^^^ variable.other.member.js
+//       ^^^^^^^^^^^^^^^^^^ invalid.illegal.js
+  })
+// <- meta.braces.js
+//^ punctuation.section.braces.end.js
+// ^ punctuation.section.parens.end.js
+
+const arrowFun = (value1, value2) => ({
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js - meta.function.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^ meta.function.js
+//                              ^ punctuation.section.parens.end.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.parens.begin.js
+//                                    ^ punctuation.section.braces.begin.js
+//                                ^^^^ meta.function.js
+  key: 'value',
+// <- meta.function.js meta.braces.js
+//^^^ string.unquoted.js
+//^^^ variable.other.member.js
+//   ^ punctuation.separator.js
+//     ^ punctuation.definition.string.js
+//      ^^^^^ string.quoted.single.js
+//           ^ punctuation.definition.string.js
+//            ^ punctuation.separator.js
+  })
+// <- meta.braces.js
+//^ punctuation.section.braces.end.js
+// ^ punctuation.section.parens.end.js
+
+const arrowFun = (value1, value2) => {
+// <- storage.type.js
+//^^^ storage.type.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//    ^^^^^^^^ entity.name.function.js
+//             ^ keyword.operator.assignment.js
+//               ^ punctuation.section.parens.begin.js
+//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js - meta.function.js
+//                ^^^^^^ variable.parameter.js
+//                      ^ punctuation.separator.js
+//                        ^^^^^^ variable.parameter.js
+//                              ^ punctuation.section.parens.end.js
+//                              ^ meta.function.js
+//                                ^^ storage.type.js
+//                                   ^ punctuation.section.block.begin.js
+//                                ^^^^ meta.function.js
+  key: 'value',
+// <- meta.function.js
+//^^^ entity.name.label.js
+//   ^ punctuation.separator.js
+}
+// <- punctuation.section.block.end.js
+
+const arrowFun = value => {
+// <- storage.type.js
+//^^^ storage.type.js
+//    ^^^^^^^^ entity.name.function.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//               ^^^^^ meta.function.parameters.js - meta.function.js
+//               ^^^^^ variable.parameter.js
+//                     ^^ storage.type.js
+//                     ^^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+const arrowFun = async value => {
+// <- storage.type.js
+//^^^ storage.type.js
+//               ^^^^^ storage.modifier.js
+//    ^^^^^^^^ entity.name.function.js
+//    ^^^^^^^^^^^^^^^^^ meta.function.js
+//                     ^^^^^ meta.function.parameters.js - meta.function.js
+//                     ^^^^^ variable.parameter.js
+//                           ^^^^ meta.function.js
+  return isFinite(Infinity)
+// <- meta.function.js
+//^^^^^^ keyword.control.js
+//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+}
+
+x => { return x }
+// <- variable.parameter.js
+//^^ storage.type.js
+//   ^ punctuation.section.block.begin.js
+//     ^^^^^^ keyword.control.js
+//            ^ variable.other.readwrite.js
+//              ^ punctuation.section.block.end.js
+
+// <- source.js - meta.function.js - meta.function.js
+
+x => y => z => { return x * y * z }
+// <- variable.parameter.js
+//^^ storage.type.js
+//   ^ variable.parameter.js
+//     ^^ storage.type.js
+//        ^ variable.parameter.js
+//          ^^ storage.type.js
+//             ^ punctuation.section.block.begin.js
+//               ^^^^^^ keyword.control.js
+//                      ^ variable.other.readwrite.js
+//                        ^ keyword.operator.arithmetic.js
+//                          ^ variable.other.readwrite.js
+//                            ^ keyword.operator.arithmetic.js
+//                              ^ variable.other.readwrite.js
+//                                ^ punctuation.section.block.end.js
+
+// <- source.js - meta.function.js - meta.function.js
+
+store => next => action => {
+// <- variable.parameter.js
+// <- meta.function.parameters.js - meta.function.js
+//    ^^ storage.type.js
+//       ^^^^ variable.parameter.js
+//       ^^^^ meta.function.parameters.js - meta.function.js
+//            ^^ storage.type.js
+//               ^^^^^^ variable.parameter.js
+//               ^^^^^^ meta.function.parameters.js - meta.function.js
+//                      ^^ storage.type.js
+//                         ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
+
+// <- source.js - meta.function.js - meta.function.js
+
+  (() => 5 + 5)
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.begin.js
+//  ^ punctuation.section.parens.end.js
+//    ^^ storage.type.js
+//       ^ constant.numeric.js
+//         ^ keyword.operator.arithmetic.js
+//           ^ constant.numeric.js
+//            ^ punctuation.section.parens.end.js
+//^^^^^^^^^^^^^ meta.function.js
+
+  (() => {
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.begin.js
+//  ^ punctuation.section.parens.end.js
+//    ^^ storage.type.js
+//       ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked arrow function')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (arg => {
+//^ punctuation.section.parens.begin.js
+// ^^^ meta.function.parameters.js - meta.function.js
+// ^^^ variable.parameter.js
+//     ^^ storage.type.js
+//        ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked arrow function with argument')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (async () => {
+//^ punctuation.section.parens.begin.js
+// ^^^^^ storage.modifier.js
+//       ^ punctuation.section.parens.begin.js
+//        ^ punctuation.section.parens.end.js
+//          ^^ storage.type.js
+//             ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked async arrow function')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
+  (async arg => {
+//^ punctuation.section.parens.begin.js
+// ^^^^^ storage.modifier.js
+//       ^^^ meta.function.parameters.js - meta.function.js
+//       ^^^ variable.parameter.js
+//           ^^ storage.type.js
+//              ^ punctuation.section.block.begin.js
+  console.log('I am an immediately invoked async arrow function with argument')
+//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
+// <- meta.function.js
+// <- meta.block.js
+})()
+// <- punctuation.section.block.end.js
+//^ punctuation.section.parens.begin.js
+// ^ punctuation.section.parens.end.js
+
 function Dog(name) {
 //^^^^^^ storage.type.js
 //       ^^^ entity.name.function.constructor.js
 //       ^^^ entity.name.class.js
 //          ^ punctuation.section.parens.begin.js
+//^^^^^^^^^^^ meta.function.js
 //           ^^^^ variable.parameter.js
+//           ^^^^ meta.function.parameters.js - meta.function.js
+//           ^^^^ meta.parens.js
 //               ^ punctuation.section.parens.end.js
 //                 ^ punctuation.section.block.begin.js
+//               ^^^ meta.function.js - meta.function.parameters.js
     this.name = name
 //  ^^^^ variable.language.js
 //      ^ punctuation.accessor.js
@@ -480,11 +932,13 @@ Dog.prototype = {
 //    ^ punctuation.separator.js
 //      ^^^^^^^^ storage.type.js
 //              ^ punctuation.section.parens.begin.js
-//               ^^^^^^^ meta.function.parameters.js
+//^^^^^^^^^^^^^^^ meta.function.js
+//               ^^^^^^^ meta.function.parameters.js - meta.function.js
 //               ^^^^^^^ meta.parens.js
 //               ^^^^^^^ variable.parameter.js
 //                      ^ punctuation.section.parens.end.js
 //                        ^ punctuation.section.block.begin.js
+//                      ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -496,10 +950,12 @@ Dog.prototype = {
 // <- meta.braces.js
 //^^^^ entity.name.function.js
 //    ^ punctuation.separator.js
-//              ^^ storage.type.js
-//      ^^^^^^^ meta.function.parameters.js
+//^^^^^^ meta.function.js
 //      ^^^^^^^ variable.parameter.js
+//      ^^^^^^^ meta.function.parameters.js - meta.function.js
+//              ^^ storage.type.js
 //                 ^ punctuation.section.block.begin.js
+//              ^^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -511,11 +967,13 @@ Dog.prototype = {
 // <- meta.braces.js
 //^^^^ entity.name.function.js
 //    ^ punctuation.section.parens.begin.js
-//     ^^^^^^^ meta.function.parameters.js
+//^^^^^ meta.function.js
+//     ^^^^^^^ meta.function.parameters.js - meta.function.js
 //     ^^^^^^^ meta.parens.js
 //     ^^^^^^^ variable.parameter.js
 //            ^ punctuation.section.parens.end.js
 //              ^ punctuation.section.block.begin.js
+//            ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -530,11 +988,13 @@ Dog.prototype = {
 // ^^^^ string.quoted.single.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
-//       ^^^^^^^ meta.function.parameters.js
-//       ^^^^^^^ meta.parens.js
+//^^^^^^^ meta.function.js
 //       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.parens.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -549,11 +1009,13 @@ Dog.prototype = {
 // ^^^^ string.quoted.double.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
-//       ^^^^^^^ meta.function.parameters.js
-//       ^^^^^^^ meta.parens.js
+//^^^^^^^ meta.function.js
 //       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.parens.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -569,7 +1031,7 @@ Dog.prototype = {
 //     ^ constant.numeric.js
 //      ^ punctuation.section.brackets.end.js
 //       ^ punctuation.section.parens.begin.js
-//        ^^^^^^^ meta.function.parameters.js
+//        ^^^^^^^ meta.function.parameters.js - meta.function.js
 //        ^^^^^^^ meta.parens.js
 //        ^^^^^^^ variable.parameter.js
 //               ^ punctuation.section.parens.end.js
@@ -594,12 +1056,19 @@ class Dog extends Object.prototype {
 //                       ^^^^^^^^^ variable.other.member.js
 //                       ^^^^^^^^^ variable.language.js
 //                                 ^ punctuation.section.braces.begin.js
+// <- meta.class.js
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.class.js
+//                                 ^ source.js meta.class.js - meta.braces.js - entity.other.inherited-class.js punctuation.section.braces.begin.js
   constructor(name) {
+// <- meta.class.js
 //^^^^^^^^^^^ entity.name.function.constructor.js
 //           ^ punctuation.section.parens.begin.js
+//^^^^^^^^^^^^ meta.function.js
 //            ^^^^ variable.parameter.js
+//            ^^^^ meta.function.parameters.js - meta.function.js
 //                ^ punctuation.section.parens.end.js
 //                  ^ punctuation.section.block.begin.js
+//                ^^^ meta.function.js
     this.name = name
 //  ^^^^ variable.language.js
 //      ^ punctuation.accessor.js
@@ -615,9 +1084,12 @@ class Dog extends Object.prototype {
   walk(howMuch) {
 //^^^^ entity.name.function.js
 //    ^ punctuation.section.parens.begin.js
+//^^^^^ meta.function.js
 //     ^^^^^^^ variable.parameter.js
+//     ^^^^^^^ meta.function.parameters.js - meta.function.js
 //            ^ punctuation.section.parens.end.js
 //              ^ punctuation.section.block.begin.js
+//            ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -631,9 +1103,12 @@ class Dog extends Object.prototype {
 // ^^^^ string.quoted.double.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
+//^^^^^^^ meta.function.js
 //       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -647,8 +1122,12 @@ class Dog extends Object.prototype {
 // ^^^^ string.quoted.single.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
+//^^^^^^^ meta.function.js
+//       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -669,9 +1148,13 @@ class Dog extends Object.prototype {
 //     ^ keyword.operator.assignment.js
 //       ^^^^^^^^ storage.type.js
 //               ^ punctuation.section.parens.begin.js
+//^^^^^^ meta.function.js
+//       ^^^^^^^^^ meta.function.js
 //                ^^^^^^^ variable.parameter.js
+//                ^^^^^^^ meta.function.parameters.js - meta.function.js
 //                       ^ punctuation.section.parens.end.js
 //                         ^ punctuation.section.block.begin.js
+//                       ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -682,10 +1165,12 @@ class Dog extends Object.prototype {
   walk = howMuch => {
 //^^^^ entity.name.function.js
 //     ^ keyword.operator.assignment.js
-//       ^^^^^^^ meta.function.parameters.js
+//^^^^^^^ meta.function.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //       ^^^^^^^ variable.parameter.js
 //               ^^ storage.type.js
 //                  ^ punctuation.section.block.begin.js
+//               ^^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -701,11 +1186,13 @@ class Dog extends Object.prototype {
 //     ^ constant.numeric.js
 //      ^ punctuation.section.brackets.end.js
 //       ^ punctuation.section.parens.begin.js
-//        ^^^^^^^ meta.function.parameters.js
+//       ^ meta.function.js
+//        ^^^^^^^ meta.function.parameters.js - meta.function.js
 //        ^^^^^^^ meta.parens.js
 //        ^^^^^^^ variable.parameter.js
 //               ^ punctuation.section.parens.end.js
 //                 ^ punctuation.section.block.begin.js
+//               ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -721,12 +1208,19 @@ class Dog {
 //^^^ storage.type.js
 //    ^^^ entity.name.class.js
 //        ^ punctuation.section.braces.begin.js
+// <- meta.class.js
+//^^^^^^^^^ meta.class.js
+//        ^ source.js meta.class.js - meta.braces.js punctuation.section.braces.begin.js
   constructor(name) {
+// <- meta.class.js
 //^^^^^^^^^^^ entity.name.function.constructor.js
 //           ^ punctuation.section.parens.begin.js
+//^^^^^^^^^^^^ meta.function.js
 //            ^^^^ variable.parameter.js
+//            ^^^^ meta.function.parameters.js - meta.function.js
 //                ^ punctuation.section.parens.end.js
 //                  ^ punctuation.section.block.begin.js
+//                ^^^ meta.function.js
     this.name = name
 //  ^^^^ variable.language.js
 //      ^ punctuation.accessor.js
@@ -742,9 +1236,12 @@ class Dog {
   walk(howMuch) {
 //^^^^ entity.name.function.js
 //    ^ punctuation.section.parens.begin.js
+//^^^^^ meta.function.js
 //     ^^^^^^^ variable.parameter.js
+//     ^^^^^^^ meta.function.parameters.js - meta.function.js
 //            ^ punctuation.section.parens.end.js
 //              ^ punctuation.section.block.begin.js
+//            ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -758,9 +1255,12 @@ class Dog {
 // ^^^^ string.quoted.double.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
+//^^^^^^^ meta.function.js
 //       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -774,8 +1274,12 @@ class Dog {
 // ^^^^ string.quoted.single.js
 //     ^ punctuation.definition.string.js
 //      ^ punctuation.section.parens.begin.js
+//^^^^^^^ meta.function.js
+//       ^^^^^^^ variable.parameter.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //              ^ punctuation.section.parens.end.js
 //                ^ punctuation.section.block.begin.js
+//              ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -795,10 +1299,14 @@ class Dog {
 //^^^^ entity.name.function.js
 //     ^ keyword.operator.assignment.js
 //       ^^^^^^^^ storage.type.js
+//^^^^^^ meta.function.js
+//       ^^^^^^^^^ meta.function.js
 //               ^ punctuation.section.parens.begin.js
 //                ^^^^^^^ variable.parameter.js
+//                ^^^^^^^ meta.function.parameters.js - meta.function.js
 //                       ^ punctuation.section.parens.end.js
 //                         ^ punctuation.section.block.begin.js
+//                       ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -809,10 +1317,12 @@ class Dog {
   walk = howMuch => {
 //^^^^ entity.name.function.js
 //     ^ keyword.operator.assignment.js
-//       ^^^^^^^ meta.function.parameters.js
+//^^^^^^^ meta.function.js
+//       ^^^^^^^ meta.function.parameters.js - meta.function.js
 //       ^^^^^^^ variable.parameter.js
 //               ^^ storage.type.js
 //                  ^ punctuation.section.block.begin.js
+//               ^^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.class.js meta.function.js
@@ -828,11 +1338,13 @@ class Dog {
 //     ^ constant.numeric.js
 //      ^ punctuation.section.brackets.end.js
 //       ^ punctuation.section.parens.begin.js
-//        ^^^^^^^ meta.function.parameters.js
+//       ^ meta.function.js
+//        ^^^^^^^ meta.function.parameters.js - meta.function.js
 //        ^^^^^^^ meta.parens.js
 //        ^^^^^^^ variable.parameter.js
 //               ^ punctuation.section.parens.end.js
 //                 ^ punctuation.section.block.begin.js
+//               ^^^ meta.function.js
     console.log('I am dog and I am walking...')
 // <- meta.braces.js meta.block.js
 // <- meta.function.js
@@ -1124,6 +1636,9 @@ const s = (
 //   ^ punctuation.definition.generic.end.js
   >
 //^ punctuation.definition.generic.end.js
+// this looks like comment
+// <- text.xml.js - comment.line.js
+//^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.js - comment.line.js
     <span className="innerText">some text</span>
 //  ^ punctuation.definition.generic.begin.js
 //   ^^^^ entity.name.tag.js
@@ -1137,296 +1652,128 @@ const s = (
 //                                       ^^ punctuation.definition.generic.begin.js
 //                                         ^^^^ entity.name.tag.js
 //                                             ^ punctuation.definition.generic.end.js
+// this looks like comment
+// <- text.xml.js - comment.line.js
+//^^^^^^^^^^^^^^^^^^^^^^^^ text.xml.js - comment.line.js
   </div>
 //^^ punctuation.definition.generic.begin.js
 //  ^^^ entity.name.tag.js
 //     ^ punctuation.definition.generic.end.js
 )
 
-function syncFunc(value, secondValue) {
-// <- storage.type.js
-//^^^^^^ storage.type.js
-//^^^^^^^^^^^^^^^^ meta.function.js
-//       ^^^^^^^^ entity.name.function.js
-//                ^^^^^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^ variable.parameter.js
-//                     ^ punctuation.separator.js
-//                       ^^^^^^^^^^^ variable.parameter.js
-//                                  ^^^ meta.function.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
-}
+null == undefined
+// <- support.constant.js
+//^^ support.constant.js
+//   ^^ keyword.operator.logical.js
+//      ^^^^^^^^^ variable.language.js
 
-function *syncFunc(value, secondValue) {
-// <- storage.type.js
-//^^^^^^ storage.type.js
-//       ^ storage.modifier.js
-//^^^^^^^^^^^^^^^^^ meta.function.js
-//        ^^^^^^^^ entity.name.function.js
-//                 ^^^^^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                 ^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
-//                        ^^^^^^^^^^^ variable.parameter.js
-//                                   ^^^ meta.function.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
-}
+typeof window === 'undefined'
+// <- keyword.other.js
+//^^^^ keyword.other.js
+//     ^^^^^^ support.type.js
+//            ^^^ keyword.operator.logical.js
+//                ^ punctuation.definition.string.js
+//                 ^^^^^^^^^ string.quoted.single.js
+//                          ^ punctuation.definition.string.js
 
-function* syncFunc(value, secondValue) {
-// <- storage.type.js
-//^^^^^^ storage.type.js
-//      ^ storage.modifier.js
-//^^^^^^^^^^^^^^^^^ meta.function.js
-//        ^^^^^^^^ entity.name.function.js
-//                ^ punctuation.section.parens.begin.js
-//                 ^^^^^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                 ^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
-//                        ^^^^^^^^^^^ variable.parameter.js
-//                                   ^ punctuation.section.parens.end.js
-//                                   ^^^ meta.function.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
-}
+isNaN == null
+// <- support.function.js
+//^^^ support.function.js
+//    ^^ keyword.operator.logical.js
+//       ^^^^ support.constant.js
 
-async function asyncFun(value) {
-// <- storage.modifier.js
-//^^^ storage.modifier.js
-//    ^^^^^^^^ storage.type.js
-//    ^^^^^^^^^^^^^^^^^^ meta.function.js
-//             ^^^^^^^^ entity.name.function.js
+exports.init = function(config) {
+// <- variable.language.js
+//^^^^^ variable.language.js
+//     ^ punctuation.accessor.js
+//      ^^^^ variable.other.member.js
+//      ^^^^ entity.name.function.js
+//           ^ keyword.operator.assignment.js
+//             ^^^^^^^^ storage.type.js
 //                     ^ punctuation.section.parens.begin.js
-//                      ^^^^^ meta.function.parameters.js meta.parens.js
-//                      ^^^^^ variable.parameter.js
-//                           ^ punctuation.section.parens.end.js
-//                           ^^^ meta.function.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+//                      ^^^^^^ meta.function.parameters.js - meta.function.js
+//                      ^^^^^^ variable.parameter.js
+//                            ^ punctuation.section.parens.end.js
+//                              ^ punctuation.section.block.begin.js
 }
+// <- punctuation.section.block.end.js
 
-const simpleFn = x => x * 2
-// <- storage.type.js
-//^^^ storage.type.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//    ^^^^^^^^ entity.name.function.js
-//             ^ keyword.operator.assignment.js
-//               ^ variable.parameter.js
-//               ^ meta.function.parameters.js
-//                 ^^ storage.type.js
-//                    ^ variable.other.readwrite.js
-//                      ^ keyword.operator.arithmetic.js
-//                        ^ constant.numeric.js
-//                 ^^^^^^^^ meta.function.js
+exports.init = config => {
+// <- variable.language.js
+//^^^^^ variable.language.js
+//     ^ punctuation.accessor.js
+//      ^^^^ variable.other.member.js
+//      ^^^^ entity.name.function.js
+//           ^ keyword.operator.assignment.js
+//             ^^^^^^ meta.function.parameters.js - meta.function.js
+//             ^^^^^^ variable.parameter.js
+//                    ^^ storage.type.js
+//                       ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
 
-const arrowFun = (value1, value2) => {
-// <- storage.type.js
-//^^^ storage.type.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//    ^^^^^^^^ entity.name.function.js
+module.exports.init = function(config) {
+// <- variable.language.js
+//^^^^ variable.language.js
+//    ^ punctuation.accessor.js
+//     ^^^^^^^ variable.other.member.js
+//     ^^^^^^^ variable.language.js
+//            ^ punctuation.accessor.js
+//             ^^^^ variable.other.member.js
+//             ^^^^ entity.name.function.js
+//                  ^ keyword.operator.assignment.js
+//                    ^^^^^^^^ storage.type.js
+//                            ^ punctuation.section.parens.begin.js
+//             ^^^^^^^^^^^^^^^^ meta.function.js
+//                             ^^^^^^ meta.function.parameters.js - meta.function.js
+//                             ^^^^^^ variable.parameter.js
+//                                   ^ punctuation.section.parens.end.js
+//                                     ^ punctuation.section.block.begin.js
+//                                   ^^^ meta.function.js
+}
+// <- punctuation.section.block.end.js
+
+mobule.exports.init = config => {
+// <- variable.other.readwrite
+//^^^^ variable.other.readwrite
+//    ^ punctuation.accessor.js
+//     ^^^^^^^ variable.other.member.js - variable.language.js
+//            ^ punctuation.accessor.js
+//             ^^^^ variable.other.member.js
+//             ^^^^ entity.name.function.js
+//                  ^ keyword.operator.assignment.js
+//                    ^^^^^^ meta.function.parameters.js - meta.function.js
+//                    ^^^^^^ variable.parameter.js
+//                           ^^ storage.type.js
+//                              ^ punctuation.section.block.begin.js
+}
+// <- punctuation.section.block.end.js
+
+module.exports = function(config) {
+// <- variable.language.js
+//^^^^ variable.language.js
+//    ^ punctuation.accessor.js
+//     ^^^^^^^ variable.other.member.js
+//     ^^^^^^^ variable.language.js
 //             ^ keyword.operator.assignment.js
-//               ^ punctuation.section.parens.begin.js
-//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
+//               ^^^^^^^^ storage.type.js
+//                       ^ punctuation.section.parens.begin.js
+//                        ^^^^^^ meta.function.parameters.js - meta.function.js
 //                        ^^^^^^ variable.parameter.js
-//                              ^^^^^^ meta.function.js
 //                              ^ punctuation.section.parens.end.js
-//                                ^^ storage.type.js
-//                                   ^ punctuation.section.block.begin.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
+//                                ^ punctuation.section.block.begin.js
 }
 // <- punctuation.section.block.end.js
 
-const arrowFun = (value1, value2) => ({
-// <- storage.type.js
-//^^^ storage.type.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//    ^^^^^^^^ entity.name.function.js
+module.exports = config => {
+// <- variable.language.js
+//^^^^ variable.language.js
+//    ^ punctuation.accessor.js
+//     ^^^^^^^ variable.other.member.js
+//     ^^^^^^^ variable.language.js
 //             ^ keyword.operator.assignment.js
-//               ^ punctuation.section.parens.begin.js
-//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
-//                        ^^^^^^ variable.parameter.js
-//                              ^^^^^^ meta.function.js
-//                              ^ punctuation.section.parens.end.js
-//                                ^^ storage.type.js
-//                                   ^ punctuation.section.parens.begin.js
-//                                    ^ punctuation.section.braces.begin.js
-  return isFinite(Infinity)
-// <- meta.function.js meta.braces.js
-//^^^^^^ string.unquoted.js
-//^^^^^^ variable.other.member.js
-//       ^^^^^^^^^^^^^^^^^^ invalid.illegal.js
-  })
-// <- meta.braces.js
-//^ punctuation.section.braces.end.js
-// ^ punctuation.section.parens.end.js
-
-const arrowFun = (value1, value2) => ({
-// <- storage.type.js
-//^^^ storage.type.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//    ^^^^^^^^ entity.name.function.js
-//             ^ keyword.operator.assignment.js
-//               ^ punctuation.section.parens.begin.js
-//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
-//                        ^^^^^^ variable.parameter.js
-//                              ^^^^^^ meta.function.js
-//                              ^ punctuation.section.parens.end.js
-//                                ^^ storage.type.js
-//                                   ^ punctuation.section.parens.begin.js
-//                                    ^ punctuation.section.braces.begin.js
-  key: 'value',
-// <- meta.function.js meta.braces.js
-//^^^ string.unquoted.js
-//^^^ variable.other.member.js
-//   ^ punctuation.separator.js
-//     ^ punctuation.definition.string.js
-//      ^^^^^ string.quoted.single.js
-//           ^ punctuation.definition.string.js
-//            ^ punctuation.separator.js
-  })
-// <- meta.braces.js
-//^ punctuation.section.braces.end.js
-// ^ punctuation.section.parens.end.js
-
-const arrowFun = (value1, value2) => {
-// <- storage.type.js
-//^^^ storage.type.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//    ^^^^^^^^ entity.name.function.js
-//             ^ keyword.operator.assignment.js
-//               ^ punctuation.section.parens.begin.js
-//                ^^^^^^^^^^^^^^ meta.function.parameters.js meta.parens.js
-//                ^^^^^^ variable.parameter.js
-//                      ^ punctuation.separator.js
-//                        ^^^^^^ variable.parameter.js
-//                              ^^^^^^ meta.function.js
-//                              ^ punctuation.section.parens.end.js
-//                                ^^ storage.type.js
-//                                   ^ punctuation.section.block.begin.js
-  key: 'value',
-// <- meta.function.js
-//^^^ entity.name.label.js
-//   ^ punctuation.separator.js
-}
-// <- punctuation.section.block.end.js
-
-const arrowFun = value => {
-// <- storage.type.js
-//^^^ storage.type.js
-//    ^^^^^^^^ entity.name.function.js
-//^^^^^^^^^^^^^^^ meta.function.js
-//               ^^^^^ meta.function.parameters.js
-//               ^^^^^ variable.parameter.js
-//                    ^^^^^ meta.function.js
-//                     ^^ storage.type.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
-}
-
-const arrowFun = async value => {
-// <- storage.type.js
-//^^^ storage.type.js
-//               ^^^^^ storage.modifier.js
-//    ^^^^^^^^ entity.name.function.js
-//    ^^^^^^^^^^^^^^^^^ meta.function.js
-//                     ^^^^^ meta.function.parameters.js
-//                     ^^^^^ variable.parameter.js
-//                          ^^^^^ meta.function.js
-  return isFinite(Infinity)
-// <- meta.function.js
-//^^^^^^ keyword.control.js
-//       ^^^^^^^^^^^^^^^^^^ meta.function-call.js
-}
-
-  (() => {
-//^ punctuation.section.parens.begin.js
-// ^ punctuation.section.parens.begin.js
-//  ^ punctuation.section.parens.end.js
-//    ^^ storage.type.js
-//       ^ punctuation.section.block.begin.js
-  console.log('I am an immediately invoked arrow function')
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
-// <- meta.function.js
-// <- meta.block.js
-})()
-// <- punctuation.section.block.end.js
-//^ punctuation.section.parens.begin.js
-// ^ punctuation.section.parens.end.js
-
-  (arg => {
-//^ punctuation.section.parens.begin.js
-// ^^^ meta.function.parameters.js
-// ^^^ variable.parameter.js
-//     ^^ storage.type.js
-//        ^ punctuation.section.block.begin.js
-  console.log('I am an immediately invoked arrow function with argument')
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
-// <- meta.function.js
-// <- meta.block.js
-})()
-// <- punctuation.section.block.end.js
-//^ punctuation.section.parens.begin.js
-// ^ punctuation.section.parens.end.js
-
-  (async () => {
-//^ punctuation.section.parens.begin.js
-// ^^^^^ storage.modifier.js
-//       ^ punctuation.section.parens.begin.js
-//        ^ punctuation.section.parens.end.js
-//          ^^ storage.type.js
-//             ^ punctuation.section.block.begin.js
-  console.log('I am an immediately invoked async arrow function')
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
-// <- meta.function.js
-// <- meta.block.js
-})()
-// <- punctuation.section.block.end.js
-//^ punctuation.section.parens.begin.js
-// ^ punctuation.section.parens.end.js
-
-  (async arg => {
-//^ punctuation.section.parens.begin.js
-// ^^^^^ storage.modifier.js
-//       ^^^ meta.function.parameters.js
-//       ^^^ variable.parameter.js
-//           ^^ storage.type.js
-//              ^ punctuation.section.block.begin.js
-  console.log('I am an immediately invoked async arrow function with argument')
-//        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.js
-// <- meta.function.js
-// <- meta.block.js
-})()
-// <- punctuation.section.block.end.js
-//^ punctuation.section.parens.begin.js
-// ^ punctuation.section.parens.end.js
-
-store => next => action => {
-// <- variable.parameter.js
-// <- meta.function.parameters.js
-//    ^^ storage.type.js
-//       ^^^^ variable.parameter.js
-//       ^^^^ meta.function.parameters.js
-//            ^^ storage.type.js
+//               ^^^^^^ meta.function.parameters.js - meta.function.js
 //               ^^^^^^ variable.parameter.js
-//               ^^^^^^ meta.function.parameters.js
 //                      ^^ storage.type.js
 //                         ^ punctuation.section.block.begin.js
 }
@@ -1960,6 +2307,8 @@ type Props = {
 }
 // <- punctuation.section.braces.end.js
 
+// <- source.js - meta.type.js - storage.type.js
+
 type Dispatch<A> = (<R>(a: Thunk<A, R>) => R) & ((a: A) => void)
 // <- storage.type.js
 //^^ storage.type.js
@@ -1996,6 +2345,8 @@ type Dispatch<A> = (<R>(a: Thunk<A, R>) => R) & ((a: A) => void)
 //                                                         ^^^^ storage.type.js support.type.js
 //                                                             ^ punctuation.section.parens.end.js
 
+// <- source.js - meta.type.js - storage.type.js
+
 type UnionType =
 // <- storage.type.js
 //^^ storage.type.js
@@ -2007,6 +2358,8 @@ type UnionType =
   | None
 //^ keyword.operator.js
 //  ^^^^ storage.type.js
+
+// <- source.js - meta.type.js - storage.type.js
 
 type StringOrBoolean =
 // <- storage.type.js
@@ -2021,3 +2374,5 @@ type StringOrBoolean =
 //^ keyword.operator.js
 //  ^^^^^^^ storage.type.js
 //  ^^^^^^^ support.type.js
+
+// <- source.js - meta.type.js - storage.type.js

@@ -28,7 +28,7 @@ variables:
   capIdentifier: '\b[A-Z][_$\w\d]*\b'
   builtinFunctions: 'isFinite|isNaN|require'
   fn: \b(async\s+)?(function)\b
-  arrowFn: (\basync\s)?\s*(\(([^(]*)\s*\)|{{identifier}})\s*(=>)
+  arrowFn: (\basync\s*)?(\(([^(]*)\s*\)|{{identifier}})\s*(=>)
   keywords: \bif|switch|try|var|let|const|static|function|return|class|do|for|while|debugger|export|import|yield|of|type|declare\b
   # entities are stolen from https://dev.w3.org/html5/html-author/charref
   jsxEntities: 'Tab|NewLine|excl|quot|QUOT|num|dollar|percnt|amp|AMP|apos|lpar|rpar|ast|midast|plus|comma|period|sol|colon|semi|lt|LT|equals|gt|GT|quest|commat|lsqb|lbrack|bsol|rsqb|rbrack|Hat|lowbar|grave|DiacriticalGrave|lcub|lbrace|verbar|vert|VerticalLine|rcub|rbrace|nbsp|NonBreakingSpace|iexcl|cent|pound|curren|yen|brvbar|sect|Dot|die|DoubleDot|uml|copy|COPY|ordf|laquo|not|shy|reg|circledR|REG|macr|OverBar|strns|deg|plusmn|pm|PlusMinus|sup2|sup3|acute|DiacriticalAcute|micro|para|middot|centerdot|CenterDot|cedil|Cedilla|sup1|ordm|raquo|frac14|frac12|half|frac34|iquest|Agrave|Aacute|Acirc|Atilde|Auml|Aring|AElig|Ccedil|Egrave|Eacute|Ecirc|Euml|Igrave|Iacute|Icirc|Iuml|ETH|Ntilde|Ograve|Oacute|Ocirc|Otilde|Ouml|times|Oslash|Ugrave|Uacute|Ucirc|Uuml|Yacute|THORN|szlig|agrave|aacute|acirc|atilde|auml|aring|aelig|ccedil|egrave|eacute|ecirc|euml|igrave|iacute|icirc|iuml|eth|ntilde|ograve|oacute|ocirc|otilde|ouml|divide|div|oslash|ugrave|uacute|ucirc|uuml|yacute|thorn|yuml|Amacr|amacr|Abreve|abreve|Aogon|aogon|Cacute|cacute|Ccirc|ccirc|Cdot|cdot|Ccaron|ccaron|Dcaron|dcaron|Dstrok|dstrok|Emacr|emacr|Edot|edot|Eogon|eogon|Ecaron|ecaron|Gcirc|gcirc|Gbreve|gbreve|Gdot|gdot|Gcedil|Hcirc|hcirc|Hstrok|hstrok|Itilde|itilde|Imacr|imacr|Iogon|iogon|Idot|imath|inodot|IJlig|ijlig|Jcirc|jcirc|Kcedil|kcedil|kgreen|Lacute|lacute|Lcedil|lcedil|Lcaron|lcaron|Lmidot|lmidot|Lstrok|lstrok|Nacute|nacute|Ncedil|ncedil|Ncaron|ncaron|napos|ENG|eng|Omacr|omacr|Odblac|odblac|OElig|oelig|Racute|racute|Rcedil|rcedil|Rcaron|rcaron|Sacute|sacute|Scirc|scirc|Scedil|scedil|Scaron|scaron|Tcedil|tcedil|Tcaron|tcaron|Tstrok|tstrok|Utilde|utilde|Umacr|umacr|Ubreve|ubreve|Uring|uring|Udblac|udblac|Uogon|uogon|Wcirc|wcirc|Ycirc|ycirc|Yuml|Zacute|zacute|Zdot|zdot|Zcaron|zcaron|fnof|imped|gacute|jmath|circ|caron|Hacek|breve|Breve|dot|DiacriticalDot|ring|ogon|tilde|DiacriticalTilde|dblac|DiacriticalDoubleAcute|DownBreve|UnderBar|Alpha|Beta|Gamma|Delta|Epsilon|Zeta|Eta|Theta|Iota|Kappa|Lambda|Mu|Nu|Xi|Omicron|Pi|Rho|Sigma|Tau|Upsilon|Phi|Chi|Psi|Omega|alpha|beta|gamma|delta|epsiv|varepsilon|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigmav|varsigma|sigmaf|sigma|tau|upsi|upsilon|phi|phiv|varphi|chi|psi|omega|thetav|vartheta|thetasym|Upsi|upsih|straightphi|piv|varpi|Gammad|gammad|digamma|kappav|varkappa|rhov|varrho|epsi|straightepsilon|bepsi|backepsilon|IOcy|DJcy|GJcy|Jukcy|DScy|Iukcy|YIcy|Jsercy|LJcy|NJcy|TSHcy|KJcy|Ubrcy|DZcy|Acy|Bcy|Vcy|Gcy|Dcy|IEcy|ZHcy|Zcy|Icy|Jcy|Kcy|Lcy|Mcy|Ncy|Ocy|Pcy|Rcy|Scy|Tcy|Ucy|Fcy|KHcy|TScy|CHcy|SHcy|SHCHcy|HARDcy|Ycy|SOFTcy|Ecy|YUcy|YAcy|acy|bcy|vcy|gcy|dcy|iecy|zhcy|zcy|icy|jcy|kcy|lcy|mcy|ncy|ocy|pcy|rcy|scy|tcy|ucy|fcy|khcy|tscy|chcy|shcy|shchcy|hardcy|ycy|softcy|ecy|yucy|yacy|iocy|djcy|gjcy|jukcy|dscy|iukcy|yicy|jsercy|ljcy|njcy|tshcy|kjcy|ubrcy|dzcy|ensp|emsp|emsp13|emsp14|numsp|puncsp|thinsp|ThinSpace|hairsp|VeryThinSpace|ZeroWidthSpace|NegativeVeryThinSpace|NegativeThinSpace|NegativeMediumSpace|NegativeThickSpace|zwnj|zwj|lrm|rlm|hyphen|dash|ndash|mdash|horbar|Verbar|Vert|lsquo|OpenCurlyQuote|rsquo|rsquor|CloseCurlyQuote|lsquor|sbquo|ldquo|OpenCurlyDoubleQuote|rdquo|rdquor|CloseCurlyDoubleQuote|ldquor|bdquo|dagger|Dagger|ddagger|bull|bullet|nldr|hellip|mldr|permil|pertenk|prime|Prime|tprime|bprime|backprime|lsaquo|rsaquo|oline|caret|hybull|frasl|bsemi|qprime|MediumSpace|NoBreak|ApplyFunction|af|InvisibleTimes|it|InvisibleComma|ic|euro|tdot|TripleDot|DotDot|Copf|complexes|incare|gscr|hamilt|HilbertSpace|Hscr|Hfr|Poincareplane|quaternions|Hopf|planckh|planck|hbar|plankv|hslash|Iscr|imagline|image|Im|imagpart|Ifr|Lscr|lagran|Laplacetrf|ell|Nopf|naturals|numero|copysr|weierp|wp|Popf|primes|rationals|Qopf|Rscr|realine|real|Re|realpart|Rfr|reals|Ropf|rx|trade|TRADE|integers|Zopf|ohm|mho|Zfr|zeetrf|iiota|angst|bernou|Bernoullis|Bscr|Cfr|Cayleys|escr|Escr|expectation|Fscr|Fouriertrf|phmmat|Mellintrf|Mscr|order|orderof|oscr|alefsym|aleph|beth|gimel|daleth|CapitalDifferentialD|DD|DifferentialD|dd|ExponentialE|exponentiale|ee|ImaginaryI|ii|frac13|frac23|frac15|frac25|frac35|frac45|frac16|frac56|frac18|frac38|frac58|frac78|larr|leftarrow|LeftArrow|slarr|ShortLeftArrow|uarr|uparrow|UpArrow|ShortUpArrow|rarr|rightarrow|RightArrow|srarr|ShortRightArrow|darr|downarrow|DownArrow|ShortDownArrow|harr|leftrightarrow|LeftRightArrow|varr|updownarrow|UpDownArrow|nwarr|UpperLeftArrow|nwarrow|nearr|UpperRightArrow|nearrow|searr|searrow|LowerRightArrow|swarr|swarrow|LowerLeftArrow|nlarr|nleftarrow|nrarr|nrightarrow|rarrw|rightsquigarrow|Larr|twoheadleftarrow|Uarr|Rarr|twoheadrightarrow|Darr|larrtl|leftarrowtail|rarrtl|rightarrowtail|LeftTeeArrow|mapstoleft|UpTeeArrow|mapstoup|map|RightTeeArrow|mapsto|DownTeeArrow|mapstodown|larrhk|hookleftarrow|rarrhk|hookrightarrow|larrlp|looparrowleft|rarrlp|looparrowright|harrw|leftrightsquigarrow|nharr|nleftrightarrow|lsh|Lsh|rsh|Rsh|ldsh|rdsh|crarr|cularr|curvearrowleft|curarr|curvearrowright|olarr|circlearrowleft|orarr|circlearrowright|lharu|LeftVector|leftharpoonup|lhard|leftharpoondown|DownLeftVector|uharr|upharpoonright|RightUpVector|uharl|upharpoonleft|LeftUpVector|rharu|RightVector|rightharpoonup|rhard|rightharpoondown|DownRightVector|dharr|RightDownVector|downharpoonright|dharl|LeftDownVector|downharpoonleft|rlarr|rightleftarrows|RightArrowLeftArrow|udarr|UpArrowDownArrow|lrarr|leftrightarrows|LeftArrowRightArrow|llarr|leftleftarrows|uuarr|upuparrows|rrarr|rightrightarrows|ddarr|downdownarrows|lrhar|ReverseEquilibrium|leftrightharpoons|rlhar|rightleftharpoons|Equilibrium|nlArr|nLeftarrow|nhArr|nLeftrightarrow|nrArr|nRightarrow|lArr|Leftarrow|DoubleLeftArrow|uArr|Uparrow|DoubleUpArrow|rArr|Rightarrow|Implies|DoubleRightArrow|dArr|Downarrow|DoubleDownArrow|hArr|Leftrightarrow|DoubleLeftRightArrow|iff|vArr|Updownarrow|DoubleUpDownArrow|nwArr|neArr|seArr|swArr|lAarr|Lleftarrow|rAarr|Rrightarrow|zigrarr|larrb|LeftArrowBar|rarrb|RightArrowBar|duarr|DownArrowUpArrow|loarr|roarr|hoarr|forall|ForAll|comp|complement|part|PartialD|exist|Exists|nexist|NotExists|nexists|empty|emptyset|emptyv|varnothing|nabla|Del|isin|isinv|Element|in|notin|NotElement|notinva|niv|ReverseElement|ni|SuchThat|notni|notniva|NotReverseElement|prod|Product|coprod|Coproduct|sum|Sum|minus|mnplus|mp|MinusPlus|plusdo|dotplus|setmn|setminus|Backslash|ssetmn|smallsetminus|lowast|compfn|SmallCircle|radic|Sqrt|prop|propto|Proportional|vprop|varpropto|infin|angrt|ang|angle|angmsd|measuredangle|angsph|mid|VerticalBar|smid|shortmid|nmid|NotVerticalBar|nsmid|nshortmid|par|parallel|DoubleVerticalBar|spar|shortparallel|npar|nparallel|NotDoubleVerticalBar|nspar|nshortparallel|and|wedge|or|vee|cap|cup|int|Integral|Int|tint|iiint|conint|oint|ContourIntegral|Conint|DoubleContourIntegral|Cconint|cwint|cwconint|ClockwiseContourIntegral|awconint|CounterClockwiseContourIntegral|there4|therefore|Therefore|becaus|because|Because|ratio|Colon|Proportion|minusd|dotminus|mDDot|homtht|sim|Tilde|thksim|thicksim|bsim|backsim|ac|mstpos|acd|wreath|VerticalTilde|wr|nsim|NotTilde|esim|EqualTilde|eqsim|sime|TildeEqual|simeq|nsime|nsimeq|NotTildeEqual|cong|TildeFullEqual|simne|ncong|NotTildeFullEqual|asymp|ap|TildeTilde|approx|thkap|thickapprox|nap|NotTildeTilde|napprox|ape|approxeq|apid|bcong|backcong|asympeq|CupCap|bump|HumpDownHump|Bumpeq|bumpe|HumpEqual|bumpeq|esdot|DotEqual|doteq|eDot|doteqdot|efDot|fallingdotseq|erDot|risingdotseq|colone|coloneq|Assign|ecolon|eqcolon|ecir|eqcirc|cire|circeq|wedgeq|veeeq|trie|triangleq|equest|questeq|ne|NotEqual|equiv|Congruent|nequiv|NotCongruent|le|leq|ge|GreaterEqual|geq|lE|LessFullEqual|leqq|gE|GreaterFullEqual|geqq|lnE|lneqq|gnE|gneqq|Lt|NestedLessLess|ll|Gt|NestedGreaterGreater|gg|twixt|between|NotCupCap|nlt|NotLess|nless|ngt|NotGreater|ngtr|nle|NotLessEqual|nleq|nge|NotGreaterEqual|ngeq|lsim|LessTilde|lesssim|gsim|gtrsim|GreaterTilde|nlsim|NotLessTilde|ngsim|NotGreaterTilde|lg|lessgtr|LessGreater|gl|gtrless|GreaterLess|ntlg|NotLessGreater|ntgl|NotGreaterLess|pr|Precedes|prec|sc|Succeeds|succ|prcue|PrecedesSlantEqual|preccurlyeq|sccue|SucceedsSlantEqual|succcurlyeq|prsim|precsim|PrecedesTilde|scsim|succsim|SucceedsTilde|npr|nprec|NotPrecedes|nsc|nsucc|NotSucceeds|sub|subset|sup|supset|Superset|nsub|nsup|sube|SubsetEqual|subseteq|supe|supseteq|SupersetEqual|nsube|nsubseteq|NotSubsetEqual|nsupe|nsupseteq|NotSupersetEqual|subne|subsetneq|supne|supsetneq|cupdot|uplus|UnionPlus|sqsub|SquareSubset|sqsubset|sqsup|SquareSuperset|sqsupset|sqsube|SquareSubsetEqual|sqsubseteq|sqsupe|SquareSupersetEqual|sqsupseteq|sqcap|SquareIntersection|sqcup|SquareUnion|oplus|CirclePlus|ominus|CircleMinus|otimes|CircleTimes|osol|odot|CircleDot|ocir|circledcirc|oast|circledast|odash|circleddash|plusb|boxplus|minusb|boxminus|timesb|boxtimes|sdotb|dotsquare|vdash|RightTee|dashv|LeftTee|top|DownTee|bottom|bot|perp|UpTee|models|vDash|DoubleRightTee|Vdash|Vvdash|VDash|nvdash|nvDash|nVdash|nVDash|prurel|vltri|vartriangleleft|LeftTriangle|vrtri|vartriangleright|RightTriangle|ltrie|trianglelefteq|LeftTriangleEqual|rtrie|trianglerighteq|RightTriangleEqual|origof|imof|mumap|multimap|hercon|intcal|intercal|veebar|barvee|angrtvb|lrtri|xwedge|Wedge|bigwedge|xvee|Vee|bigvee|xcap|Intersection|bigcap|xcup|Union|bigcup|diam|diamond|Diamond|sdot|sstarf|Star|divonx|divideontimes|bowtie|ltimes|rtimes|lthree|leftthreetimes|rthree|rightthreetimes|bsime|backsimeq|cuvee|curlyvee|cuwed|curlywedge|Sub|Subset|Sup|Supset|Cap|Cup|fork|pitchfork|epar|ltdot|lessdot|gtdot|gtrdot|Ll|Gg|ggg|leg|LessEqualGreater|lesseqgtr|gel|gtreqless|GreaterEqualLess|cuepr|curlyeqprec|cuesc|curlyeqsucc|nprcue|NotPrecedesSlantEqual|nsccue|NotSucceedsSlantEqual|nsqsube|NotSquareSubsetEqual|nsqsupe|NotSquareSupersetEqual|lnsim|gnsim|prnsim|precnsim|scnsim|succnsim|nltri|ntriangleleft|NotLeftTriangle|nrtri|ntriangleright|NotRightTriangle|nltrie|ntrianglelefteq|NotLeftTriangleEqual|nrtrie|ntrianglerighteq|NotRightTriangleEqual|vellip|ctdot|utdot|dtdot|disin|isinsv|isins|isindot|notinvc|notinvb|isinE|nisd|xnis|nis|notnivc|notnivb|barwed|barwedge|Barwed|doublebarwedge|lceil|LeftCeiling|rceil|RightCeiling|lfloor|LeftFloor|rfloor|RightFloor|drcrop|dlcrop|urcrop|ulcrop|bnot|profline|profsurf|telrec|target|ulcorn|ulcorner|urcorn|urcorner|dlcorn|llcorner|drcorn|lrcorner|frown|sfrown|smile|ssmile|cylcty|profalar|topbot|ovbar|solbar|angzarr|lmoust|lmoustache|rmoust|rmoustache|tbrk|OverBracket|bbrk|UnderBracket|bbrktbrk|OverParenthesis|UnderParenthesis|OverBrace|UnderBrace|trpezium|elinters|blank|oS|circledS|boxh|HorizontalLine|boxv|boxdr|boxdl|boxur|boxul|boxvr|boxvl|boxhd|boxhu|boxvh|boxH|boxV|boxdR|boxDr|boxDR|boxdL|boxDl|boxDL|boxuR|boxUr|boxUR|boxuL|boxUl|boxUL|boxvR|boxVr|boxVR|boxvL|boxVl|boxVL|boxHd|boxhD|boxHD|boxHu|boxhU|boxHU|boxvH|boxVh|boxVH|uhblk|lhblk|block|blk14|blk12|blk34|squ|square|Square|squf|squarf|blacksquare|FilledVerySmallSquare|EmptyVerySmallSquare|rect|marker|fltns|xutri|bigtriangleup|utrif|blacktriangle|utri|triangle|rtrif|blacktriangleright|rtri|triangleright|xdtri|bigtriangledown|dtrif|blacktriangledown|dtri|triangledown|ltrif|blacktriangleleft|ltri|triangleleft|loz|lozenge|cir|tridot|xcirc|bigcirc|ultri|urtri|lltri|EmptySmallSquare|FilledSmallSquare|starf|bigstar|star|phone|female|male|spades|spadesuit|clubs|clubsuit|hearts|heartsuit|diams|diamondsuit|sung|flat|natur|natural|sharp|check|checkmark|cross|malt|maltese|sext|VerticalSeparator|lbbrk|rbbrk|lobrk|LeftDoubleBracket|robrk|RightDoubleBracket|lang|LeftAngleBracket|langle|rang|RightAngleBracket|rangle|Lang|Rang|loang|roang|xlarr|longleftarrow|LongLeftArrow|xrarr|longrightarrow|LongRightArrow|xharr|longleftrightarrow|LongLeftRightArrow|xlArr|Longleftarrow|DoubleLongLeftArrow|xrArr|Longrightarrow|DoubleLongRightArrow|xhArr|Longleftrightarrow|DoubleLongLeftRightArrow|xmap|longmapsto|dzigrarr|nvlArr|nvrArr|nvHarr|Map|lbarr|rbarr|bkarow|lBarr|rBarr|dbkarow|RBarr|drbkarow|DDotrahd|UpArrowBar|DownArrowBar|Rarrtl|latail|ratail|lAtail|rAtail|larrfs|rarrfs|larrbfs|rarrbfs|nwarhk|nearhk|searhk|hksearow|swarhk|hkswarow|nwnear|nesear|toea|seswar|tosa|swnwar|rarrc|cudarrr|ldca|rdca|cudarrl|larrpl|curarrm|cularrp|rarrpl|harrcir|Uarrocir|lurdshar|ldrushar|LeftRightVector|RightUpDownVector|DownLeftRightVector|LeftUpDownVector|LeftVectorBar|RightVectorBar|RightUpVectorBar|RightDownVectorBar|DownLeftVectorBar|DownRightVectorBar|LeftUpVectorBar|LeftDownVectorBar|LeftTeeVector|RightTeeVector|RightUpTeeVector|RightDownTeeVector|DownLeftTeeVector|DownRightTeeVector|LeftUpTeeVector|LeftDownTeeVector|lHar|uHar|rHar|dHar|luruhar|ldrdhar|ruluhar|rdldhar|lharul|llhard|rharul|lrhard|udhar|UpEquilibrium|duhar|ReverseUpEquilibrium|RoundImplies|erarr|simrarr|larrsim|rarrsim|rarrap|ltlarr|gtrarr|subrarr|suplarr|lfisht|rfisht|ufisht|dfisht|lopar|ropar|lbrke|rbrke|lbrkslu|rbrksld|lbrksld|rbrkslu|langd|rangd|lparlt|rpargt|gtlPar|ltrPar|vzigzag|vangrt|angrtvbd|ange|range|dwangle|uwangle|angmsdaa|angmsdab|angmsdac|angmsdad|angmsdae|angmsdaf|angmsdag|angmsdah|bemptyv|demptyv|cemptyv|raemptyv|laemptyv|ohbar|omid|opar|operp|olcross|odsold|olcir|ofcir|olt|ogt|cirscir|cirE|solb|bsolb|boxbox|trisb|rtriltri|LeftTriangleBar|RightTriangleBar|race|iinfin|infintie|nvinfin|eparsl|smeparsl|eqvparsl|lozf|blacklozenge|RuleDelayed|dsol|xodot|bigodot|xoplus|bigoplus|xotime|bigotimes|xuplus|biguplus|xsqcup|bigsqcup|qint|iiiint|fpartint|cirfnint|awint|rppolint|scpolint|npolint|pointint|quatint|intlarhk|pluscir|plusacir|simplus|plusdu|plussim|plustwo|mcomma|minusdu|loplus|roplus|Cross|timesd|timesbar|smashp|lotimes|rotimes|otimesas|Otimes|odiv|triplus|triminus|tritime|iprod|intprod|amalg|capdot|ncup|ncap|capand|cupor|cupcap|capcup|cupbrcap|capbrcup|cupcup|capcap|ccups|ccaps|ccupssm|And|Or|andand|oror|orslope|andslope|andv|orv|andd|ord|wedbar|sdote|simdot|congdot|easter|apacir|apE|eplus|pluse|Esim|Colone|Equal|eDDot|ddotseq|equivDD|ltcir|gtcir|ltquest|gtquest|les|LessSlantEqual|leqslant|ges|GreaterSlantEqual|geqslant|lesdot|gesdot|lesdoto|gesdoto|lesdotor|gesdotol|lap|lessapprox|gap|gtrapprox|lne|lneq|gne|gneq|lnap|lnapprox|gnap|gnapprox|lEg|lesseqqgtr|gEl|gtreqqless|lsime|gsime|lsimg|gsiml|lgE|glE|lesges|gesles|els|eqslantless|egs|eqslantgtr|elsdot|egsdot|el|eg|siml|simg|simlE|simgE|LessLess|GreaterGreater|glj|gla|ltcc|gtcc|lescc|gescc|smt|lat|smte|late|bumpE|pre|preceq|PrecedesEqual|sce|succeq|SucceedsEqual|prE|scE|prnE|precneqq|scnE|succneqq|prap|precapprox|scap|succapprox|prnap|precnapprox|scnap|succnapprox|Pr|Sc|subdot|supdot|subplus|supplus|submult|supmult|subedot|supedot|subE|subseteqq|supE|supseteqq|subsim|supsim|subnE|subsetneqq|supnE|supsetneqq|csub|csup|csube|csupe|subsup|supsub|subsub|supsup|suphsub|supdsub|forkv|topfork|mlcp|Dashv|DoubleLeftTee|Vdashl|Barv|vBar|vBarv|Vbar|Not|bNot|rnmid|cirmid|midcir|topcir|nhpar|parsim|parsl|fflig|filig|fllig|ffilig|ffllig|Ascr|Cscr|Dscr|Gscr|Jscr|Kscr|Nscr|Oscr|Pscr|Qscr|Sscr|Tscr|Uscr|Vscr|Wscr|Xscr|Yscr|Zscr|ascr|bscr|cscr|dscr|fscr|hscr|iscr|jscr|kscr|lscr|mscr|nscr|pscr|qscr|rscr|sscr|tscr|uscr|vscr|wscr|xscr|yscr|zscr|Afr|Bfr|Dfr|Efr|Ffr|Gfr|Jfr|Kfr|Lfr|Mfr|Nfr|Ofr|Pfr|Qfr|Sfr|Tfr|Ufr|Vfr|Wfr|Xfr|Yfr|afr|bfr|cfr|dfr|efr|ffr|gfr|hfr|ifr|jfr|kfr|lfr|mfr|nfr|ofr|pfr|qfr|rfr|sfr|tfr|ufr|vfr|wfr|xfr|yfr|zfr|Aopf|Bopf|Dopf|Eopf|Fopf|Gopf|Iopf|Jopf|Kopf|Lopf|Mopf|Oopf|Sopf|Topf|Uopf|Vopf|Wopf|Xopf|Yopf|aopf|bopf|copf|dopf|eopf|fopf|gopf|hopf|iopf|jopf|kopf|lopf|mopf|nopf|oopf|popf|qopf|ropf|sopf|topf|uopf|vopf|wopf|xopf|yopf|zopf'
@@ -54,33 +54,27 @@ contexts:
   main:
     - match: "^.{999,}" # ignore lines longer than 999 symbols
     - include: statement
+    - include: invalid-syntax
 
-  expression:
-    - include: arrow-function-definition
-    - include: operator-without-preceding-operand
-    - include: jsx
-    - include: literal
-    - include: function-call
-    - include: builtin
-    - match: \.
-      scope: punctuation.accessor.js
+  invalid-syntax:
+    - match: (?=\S)
       push:
-        - include: function-call-with-set
+        - meta_content_scope: invalid.illegal.js
+        - match: \n
+          pop: true
 
-        - match: '((prototype)|{{identifier}})'
-          scope: variable.other.member.js
-          captures:
-            2: variable.language.js
-          set: operator
-
-    - match: '{{capIdentifier}}'
-      scope: entity.name.class.js
-      push: operator
-    - match: '{{identifier}}'
-      scope: variable.other.readwrite.js
-      push: operator
+  sequence-operator:
     - match: ','
       scope: 'keyword.operator.js'
+
+  labels:
+    - match: '({{identifier}})\s*(:)'
+      captures:
+        1: entity.name.label.js
+        2: punctuation.separator.js
+
+    - match: \b(break|continue)\b
+      scope: keyword.control.js
 
   statement:
     - include: import-statement
@@ -88,15 +82,14 @@ contexts:
     - include: block-statement
     - include: flow-type-declaration
     - include: variable-declaration
-    - include: function-declaration
+    - include: function
     - include: return-statement
     - include: if-statement
     - include: switch-statement
     - include: for-statement
     - include: while-statement
     - include: try-statement
-    - match: \b(break|continue)\b
-      scope: keyword.control.js
+    - include: labels
     - include: expression
     - include: semicolon
 
@@ -157,19 +150,19 @@ contexts:
         - match: =
           scope: punctuation.separator.js
           push:
-            - match: (')
+            - match: "'"
               scope: punctuation.definition.string.js
               set:
                 - meta_content_scope: string.quoted.single.js
-                - match: (')
+                - match: "'"
                   scope: punctuation.definition.string.js
                   pop: true
 
-            - match: (")
+            - match: '"'
               scope: punctuation.definition.string.js
               set:
                 - meta_content_scope: string.quoted.double.js
-                - match: (")
+                - match: '"'
                   scope: punctuation.definition.string.js
                   pop: true
 
@@ -187,7 +180,9 @@ contexts:
       scope: punctuation.section.parens.begin.js
       push:
         - meta_content_scope: meta.parens.js
-        - include: expression
+
+        - match: (?=[^)])
+          push: expression-with-stop
 
         - match: \)
           scope: punctuation.section.parens.end.js
@@ -196,23 +191,50 @@ contexts:
     - match: '!'
       scope: keyword.operator.logical.js
 
-    - match: \b(delete|void|typeof|new)\b
+    - match: \b(delete|void|typeof)\b
       scope: keyword.other.js
 
-    - match: \+|-
+    - match: '-'
       scope: keyword.operator.arithmetic.js
 
     - match: '~'
       scope: keyword.operator.bitwise.js
 
+  expression-without-sequence-operator:
+    - include: arrow-function-definition
+    - include: operator-without-preceding-operand
+    - include: jsx
+    - include: literal
+    - include: new-operator
+    - include: function-call
+    - include: function
+    - include: identifiers
+    - include: accessor
+
+  expression:
+    - meta_content_scope: invalid.illegal.js
+    - include: expression-without-sequence-operator
+    - include: sequence-operator
+
+  expression-with-stop:
+    - include: expression
+
+    - match: (?=\S)
+      pop: true
+
+  expression-stop:
+    - match: (?=;)|(?={{keywords}})
+      pop: true
+
   operator:
+    - meta_content_scope: invalid.deprecated.js
     - match: '&&|\|\||((<|>)=?)|((=|!)==?)'
       scope: keyword.operator.logical.js
-      pop: true
+      set: expression
 
     - match: (\+|-|\*|\/|%|&|\|)=
       scope: keyword.operator.assignment.js
-      pop: true
+      set: expression
 
     - match: =
       scope: keyword.operator.assignment.js
@@ -224,11 +246,11 @@ contexts:
 
     - match: \+|-|\*|/|%
       scope: keyword.operator.arithmetic.js
-      pop: true
+      set: expression
 
     - match: '&|\|'
       scope: keyword.operator.bitwise.js
-      pop: true
+      set: expression
 
     - match: (?=\S)
       pop: true
@@ -295,7 +317,6 @@ contexts:
         - match: \$\{
           scope: punctuation.section.embedded.js
           push:
-            - clear_scopes: 1
             - include: expression
             - match: \}
               scope: punctuation.section.embedded.js
@@ -304,20 +325,20 @@ contexts:
   numeric-literal:
     - match: '0x{{hexDigit}}+'
       scope: constant.numeric.hex.js
-      push: operator
+      set: operator
 
     - match: '0\d+'
       scope: constant.numeric.octal.js
-      push: operator
+      set: operator
 
     - match: '-?(\d+\.?\d*|\d*\.?\d+)(e[-+](\d+))?'
       scope: constant.numeric.js
-      push: operator
+      set: operator
 
   boolean-literal:
     - match: \b(true|false)\b
       scope: constant.language.js
-      push: operator
+      set: operator
 
   array-literal:
     - match: \[
@@ -328,7 +349,7 @@ contexts:
         - match: \,
           scope: punctuation.separator.js
 
-        - include: expression
+        - include: expression-without-sequence-operator
 
         - match: \]
           scope: punctuation.section.brackets.end.js
@@ -340,19 +361,19 @@ contexts:
       pop: true
 
   class-property-value:
-    - include: function-declaration-after-name-with-push
+    - include: function-after-name
 
     - match: =
       scope: keyword.operator.assignment.js
       set:
-        - include: function-declaration
+        - include: function
         - include: class-property-value-stop
         - include: expression
 
     - include: class-property-value-stop
 
   class-body:
-    - meta_scope: meta.class.js meta.braces.js
+    - meta_content_scope: meta.class.js meta.braces.js
 
     - match: \}
       scope: punctuation.section.braces.end.js
@@ -363,13 +384,17 @@ contexts:
       captures:
         2: entity.name.function.constructor.js
         3: entity.name.function.js
-      push: class-property-value
+      push:
+        # - meta_scope: meta.function.js
+        - include: class-property-value
 
     - match: '({{identifier}})(?=\s*=\s*({{fn}}|{{arrowFn}}))'
       scope: variable.other.member.js
       captures:
         1: entity.name.function.js
-      push: class-property-value
+      push:
+        # - meta_scope: meta.function.js
+        - include: class-property-value
 
     - match: '('')(.*?)('')(?=\s*\()'
       scope: variable.other.member.js string.quoted.single.js
@@ -377,7 +402,9 @@ contexts:
         1: punctuation.definition.string.js
         2: entity.name.function.js
         3: punctuation.definition.string.js
-      push: class-property-value
+      push:
+        # - meta_scope: meta.function.js
+        - include: class-property-value
 
     - match: '(")(.*?)(")(?=\s*\()'
       scope: variable.other.member.js string.quoted.double.js
@@ -385,7 +412,9 @@ contexts:
         1: punctuation.definition.string.js
         2: entity.name.function.js
         3: punctuation.definition.string.js
-      push: class-property-value
+      push:
+        # - meta_scope: meta.function.js
+        - include: class-property-value
 
     - match: '{{identifier}}'
       scope: variable.other.member.js
@@ -428,7 +457,9 @@ contexts:
 
         - match: \]
           scope: punctuation.section.brackets.end.js
-          set: class-property-value
+          set:
+            # - meta_scope: meta.function.js
+            - include: class-property-value
 
         - include: expression
 
@@ -442,11 +473,10 @@ contexts:
 
         - match: \bextends\b
           scope: storage.modifier.js
-          set:
+          push:
             - meta_content_scope: entity.other.inherited-class.js
-            - match: \{
-              scope: punctuation.section.braces.begin.js
-              set: class-body
+            - match: (?=\{)
+              pop: true
             - include: expression
 
         - match: \{
@@ -454,28 +484,25 @@ contexts:
           set: class-body
 
   object-literal-key-value-stop:
-    - match: '(?=\S)'
+    - match: '(?=[,}])'
       pop: true
 
   object-literal-key-value:
-    - include: function-declaration-after-name-with-push
+    - include: function-after-name
 
     - match: ':'
       scope: punctuation.separator.js
-      set:
-        - match: ','
-          scope: punctuation.separator.js
-          pop: true
-
-        - include: function-declaration
-        - include: expression
+      push:
+        - include: function
         - include: object-literal-key-value-stop
+        - include: expression-without-sequence-operator
 
     - match: ','
       scope: punctuation.separator.js
       pop: true
 
     - include: object-literal-key-value-stop
+    - include: invalid-syntax
 
   object-literal:
     - match: \{
@@ -487,13 +514,17 @@ contexts:
           scope: variable.other.member.js string.unquoted.js
           captures:
             1: entity.name.function.js
-          push: object-literal-key-value
+          push:
+            # - meta_scope: meta.function.js
+            - include: object-literal-key-value
 
         - match: '({{identifier}})(?=\s*\()'
           scope: variable.other.member.js string.unquoted.js
           captures:
             1: entity.name.function.js
-          push: object-literal-key-value
+          push:
+            # - meta_scope: meta.function.js
+            - include: object-literal-key-value
 
         - match: '('')(.*?)('')(?=\s*\()'
           scope: variable.other.member.js string.quoted.single.js
@@ -501,7 +532,9 @@ contexts:
             1: punctuation.definition.string.js
             2: entity.name.function.js
             3: punctuation.definition.string.js
-          push: object-literal-key-value
+          push:
+            # - meta_scope: meta.function.js
+            - include: object-literal-key-value
 
         - match: '(")(.*?)(")(?=\s*\()'
           scope: variable.other.member.js string.quoted.double.js
@@ -509,7 +542,9 @@ contexts:
             1: punctuation.definition.string.js
             2: entity.name.function.js
             3: punctuation.definition.string.js
-          push: object-literal-key-value
+          push:
+            # - meta_scope: meta.function.js
+            - include: object-literal-key-value
 
         - match: '{{identifier}}'
           scope: variable.other.member.js string.unquoted.js
@@ -560,24 +595,79 @@ contexts:
           scope: punctuation.section.braces.end.js
           pop: true
 
-  builtin:
-    - match: \b(Infinity|NaN|null|undefined)\b
+  property-function-assignment:
+    - match: ({{identifier}})\s*(=)\s*{{fn}}
+      scope: meta.function.js
+      captures:
+        1: entity.name.function.js
+        2: keyword.operator.assignment.js
+        3: storage.modifier.js
+        4: storage.type.js
+      set: function-after-name
+
+    - match: ({{identifier}})\s*(=)\s*(?={{arrowFn}})
+      scope: meta.function.js
+      captures:
+        1: entity.name.function.js
+        2: keyword.operator.assignment.js
+      set: arrow-function-definition-matched
+
+  accessor:
+    - match: \.
+      scope: punctuation.accessor.js
+      push:
+        - include: function-call-with-set
+        - include: property-function-assignment
+
+        - match: '(\bprototype\b)|{{identifier}}'
+          scope: variable.other.member.js
+          captures:
+            1: variable.language.js
+          set: operator
+
+  identifiers:
+    - match: \b(Infinity|NaN|null)\b
       scope: support.constant.js
+      set: operator
 
-    - match: \b(this|super)\b
+    - match: \b(module)\b
       scope: variable.language.js
+      push:
+        - match: \.
+          scope: punctuation.accessor.js
+          set:
+            - include: function-call-with-set
+            - include: property-function-assignment
 
-    - match: \b(Array|Object|Buffer)\b
+            - match: '(\bexports\b)|{{identifier}}'
+              scope: variable.other.member.js
+              captures:
+                1: variable.language.js
+              set: operator
+
+    - match: \b(this|super|undefined|exports)\b
+      scope: variable.language.js
+      set: operator
+
+    - match: \b(Number|String|Boolean|Array|Object|Buffer)\b
       scope: support.class.js
+      set: operator
 
     - match: '{{builtinFunctions}}'
       scope: support.function.js
+      set: operator
 
-    - match: \b(Math|console|window|global)\b
+    - match: \b(Math|console|window|global|process)\b
       scope: support.type.js
+      set: operator
 
-    - match: \b(exports|module)\b
-      scope: support.module.js
+    - match: '{{capIdentifier}}'
+      scope: entity.name.class.js
+      set: operator
+
+    - match: '{{identifier}}'
+      scope: variable.other.readwrite.js
+      set: operator
 
   block-statement:
     - match: \{
@@ -590,61 +680,62 @@ contexts:
           scope: punctuation.section.block.end.js
           pop: true
 
-  expression-stop:
-    - match: (?=;)|(?={{keywords}}\b)
-      pop: true
+  arrow-function-definition-tail:
+    - match: =>
+      scope: storage.type.js
+      set:
+        - meta_scope: meta.function.js
+
+        - match: (?={{arrowFn}})
+          set: arrow-function-definition-matched
+
+        - match: \{
+          scope: punctuation.section.block.begin.js
+          set:
+            - meta_content_scope: meta.function.js meta.block.js
+            - include: statement
+
+            - match: \}
+              scope: punctuation.section.block.end.js
+              pop: true
+
+        - include: expression-without-sequence-operator
+
+  arrow-function-definition-matched:
+    - meta_scope: meta.function.js
+
+    - match: \basync\b
+      scope: storage.modifier.js
+
+    - match: \(
+      scope: meta.function.js punctuation.section.parens.begin.js
+      set:
+        - meta_content_scope: meta.function.parameters.js meta.parens.js
+        - include: function-parameter
+
+        - match: \)
+          scope: meta.function.js punctuation.section.parens.end.js
+          set: arrow-function-definition-tail
+
+    - match: (?=\S) # ugly hack to pop meta.function.js out
+      set:
+        - match: '{{identifier}}'
+          scope: meta.function.parameters.js variable.parameter.js
+          set: arrow-function-definition-tail
 
   arrow-function-definition:
     - match: '(?={{arrowFn}})'
-      push:
-        - meta_scope: meta.function.js
-
-        - match: \basync\b
-          scope: storage.modifier.js
-
-        - match: \(
-          scope: meta.function.js punctuation.section.parens.begin.js
-          push:
-            - meta_content_scope: meta.function.parameters.js meta.parens.js
-            - clear_scopes: 1
-            - include: function-parameter
-
-            - match: \)
-              scope: meta.function.js punctuation.section.parens.end.js
-              pop: true
-
-        - match: '{{identifier}}'
-          scope: meta.function.parameters.js variable.parameter.js
-
-        - match: =>
-          scope: storage.type.js
-
-          set:
-            - meta_content_scope: meta.function.js
-            - include: expression-stop
-
-            - match: \{
-              scope: punctuation.section.block.begin.js
-              set:
-                - meta_content_scope: meta.block.js meta.function.js
-                - include: statement
-
-                - match: \}
-                  scope: punctuation.section.block.end.js
-                  pop: true
-
-            - include: expression
+      push: arrow-function-definition-matched
 
   variable-declaration-assignment:
     - match: =
       scope: keyword.operator.assignment.js
       push:
-        - include: expression-stop
-
         - match: (?=,)
           pop: true
 
-        - include: expression
+        - include: expression-stop
+        - include: expression-without-sequence-operator
 
   variable-declaration-recursive-readwrite:
     - match: '{{identifier}}'
@@ -691,69 +782,54 @@ contexts:
     - match: ','
       scope: punctuation.separator.js
 
-  function-declaration-after-name-with-push: # FIXME: This is really dirty, do not use it
+  function-after-name:
     - match: \(
-      scope: meta.function.js punctuation.section.parens.begin.js
-      push:
-        - meta_content_scope: meta.function.parameters.js meta.parens.js
-        - clear_scopes: 1
-        - include: function-parameter
-
-        - match: \)
-          scope: meta.function.js punctuation.section.parens.end.js
-          pop: true
-
-    - match: \{
-      scope: punctuation.section.block.begin.js
-      push:
-        - meta_content_scope: meta.function.js meta.block.js
-        - include: statement
-
-        - match: \}
-          scope: punctuation.section.block.end.js
-          pop: true
-
-  function-declaration-after-name:
-    - match: \(
-      scope: meta.function.js punctuation.section.parens.begin.js
-      push:
-        - meta_content_scope: meta.function.parameters.js meta.parens.js
-        - clear_scopes: 1
-        - include: function-parameter
-
-        - match: \)
-          scope: meta.function.js punctuation.section.parens.end.js
-          pop: true
-
-    - match: \{
-      scope: punctuation.section.block.begin.js
+      scope: punctuation.section.parens.begin.js
       set:
-        - meta_content_scope: meta.function.js meta.block.js
-        - include: statement
+        - meta_content_scope: meta.parens.js meta.function.parameters.js
+        - include: function-parameter
 
-        - match: \}
-          scope: punctuation.section.block.end.js
-          pop: true
+        - match: (?=\))
+          set:
+            - match: \)
+              scope: punctuation.section.parens.end.js
+              set:
+                - meta_scope: meta.function.js
 
-  function-declaration:
-    - match: '{{fn}}'
-      captures:
-        1: storage.modifier.js
-        2: storage.type.js
+                - match: \{
+                  scope: punctuation.section.block.begin.js
+                  set:
+                    - meta_content_scope: meta.function.js meta.block.js
+                    - include: statement
 
+                    - match: \}
+                      scope: punctuation.section.block.end.js
+                      pop: true
+
+  function:
+    - match: '(?={{fn}})'
       push:
         - meta_scope: meta.function.js
 
-        - match: \*
+        - match: \basync\b
           scope: storage.modifier.js
 
-        - match: '{{capIdentifier}}'
-          scope: entity.name.function.constructor.js entity.name.class.js
+        - match: \bfunction\b
+          scope: storage.type.js
+          push:
+            - match: \*
+              scope: storage.modifier.js
 
-        - match: '{{identifier}}'
-          scope: entity.name.function.js
+            - match: '{{capIdentifier}}'
+              scope: entity.name.function.constructor.js entity.name.class.js
 
-        - include: function-declaration-after-name
+            - match: '{{identifier}}'
+              scope: entity.name.function.js
+
+            - match: (?=\()
+              pop: true # pop meta.function.js out of stack
+
+        - include: function-after-name
 
   return-statement:
     - match: \breturn\b
@@ -893,7 +969,7 @@ contexts:
                     - match: \(
                       scope: punctuation.section.parens.begin.js
                       set:
-                        - meta_content_scope: meta.block.js
+                        - meta_content_scope: meta.parens.js
 
                         - match: \)
                           scope: punctuation.section.parens.end.js
@@ -911,6 +987,35 @@ contexts:
 
             - include: statement
 
+  function-call-arguments:
+    - meta_scope: meta.function-call.js
+    - meta_content_scope: meta.parens.js
+
+    - match: ','
+      scope: punctuation.separator.js
+
+    - match: \)
+      scope: punctuation.section.parens.end.js
+      set: operator
+
+    - include: expression-without-sequence-operator
+
+  new-operator:
+    - match: \bnew\b
+      scope: keyword.other.js
+      push:
+        - meta_scope: meta.function-call.js
+
+        - match: '{{identifier}}'
+          scope: entity.name.class.js
+
+        - match: (?=\n)
+          pop: true
+
+        - match: \(
+          scope: punctuation.section.parens.begin.js
+          set: function-call-arguments
+
   function-call:
     - match: ({{capIdentifier}})\s*(\()|(({{builtinFunctions}})|({{identifier}}))\s*(\()
       captures:
@@ -919,18 +1024,7 @@ contexts:
         4: support.function.js
         5: variable.function.js
         6: punctuation.section.parens.begin.js
-      push:
-        - meta_scope: meta.function-call.js
-        - meta_content_scope: meta.parens.js
-
-        - match: ','
-          scope: punctuation.separator.js
-
-        - include: expression
-
-        - match: \)
-          scope: punctuation.section.parens.end.js
-          set: operator
+      push: function-call-arguments
 
   function-call-with-set: # FIXME: This is really dirty, do not use it
     - match: ({{capIdentifier}})\s*(\()|(({{builtinFunctions}})|({{identifier}}))\s*(\()
@@ -940,18 +1034,7 @@ contexts:
         4: support.function.js
         5: variable.function.js
         6: punctuation.section.parens.begin.js
-      set:
-        - meta_scope: meta.function-call.js
-        - meta_content_scope: meta.parens.js
-
-        - match: ','
-          scope: punctuation.separator.js
-
-        - include: expression
-
-        - match: \)
-          scope: punctuation.section.parens.end.js
-          set: operator
+      set: function-call-arguments
 
   import-member-definition:
     - match: \bas\b
