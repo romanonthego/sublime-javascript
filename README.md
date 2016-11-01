@@ -1,6 +1,19 @@
 # Sublime JavaScript
 JavaScript syntax highlighting for [SublimeText 3](https://www.sublimetext.com/) with support for es201x, [jsx](https://jsx.github.io/) and [flow](https://flowtype.org/) (tested only in [dev](https://www.sublimetext.com/3dev) builds, but should work starting from [Build 3103](https://www.sublimetext.com/blog/articles/sublime-text-3-build-3103), with introduction of [.sublime-syntax](https://www.sublimetext.com/docs/3/syntax.html))
 
+## Installation
+
+There's only one way to install this package for now, Package Control support will come later, when it matures a bit.
+
+1. First, you need to [Set Up Git](https://help.github.com/articles/set-up-git/)
+2. Then [clone the repository](https://help.github.com/articles/cloning-a-repository/) into packages folder, which you can locate using sublime menu (`Preferences` -> `Browse Packages...`)
+3. Set `JavaScript (Liberal)` as a syntax for open file (by clicking on the lower right corner of sublime window)
+
+## Setting as a default syntax
+**(NOT RECOMMENDED YET)**
+
+Open some file with `.js` file extension or actually any other (at your own risk) and select `View` -> `Syntax` -> `Open all with current extension as...` -> `JavaScript (Liberal)` from sublime menu.
+
 ## Contributing
 If you want to contribute, just clone this repo to your packages folder (Preferences -> Browser Packages... in sublime menu) and start hacking.
 
